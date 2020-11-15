@@ -1,11 +1,13 @@
-import axios from 'axios'
-import { getToken } from 'helpers/auth'
+import { OAuth2 } from '@naveteam/pandora-frontend'
 
-const token = getToken()
-console.log(token)
-const provider = axios.create({
+import { ACCESS_TOKEN, REFRESH_TOKEN } from 'helpers'
+
+const options = {
   baseURL: 'http://localhost:2020',
-  headers: { 'Content-Type': 'application/json', Authorization: token }
-})
+  access_token_name: ACCESS_TOKEN,
+  refresh_token_name: REFRESH_TOKEN
+}
 
-export default provider
+const instance = OAuth2.createInstance(options)
+
+export default instance
