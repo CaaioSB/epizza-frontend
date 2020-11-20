@@ -6,7 +6,6 @@ const UserContext = createContext()
 
 const useUser = () => {
   const context = useContext(UserContext)
-
   if (context === undefined) {
     throw new Error('useUser must be used within a UserProvider')
   }
@@ -18,7 +17,6 @@ const UserProvider = props => {
   const [user, setUser] = useState(null)
 
   const { data } = useAuth()
-
   useEffect(() => {
     if (!data) {
       return
