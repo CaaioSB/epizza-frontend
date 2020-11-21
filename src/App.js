@@ -19,7 +19,16 @@ const AuthenticatedApp = lazy(loadAuthenticatedApp)
 const UnauthenticatedApp = lazy(() => import('./UnauthenticatedApp'))
 
 const GlobalStyle = createGlobalStyle`
+:root {
+  --primary: #503E9D
+}
+
+#root, body {
+  height: 100vh
+}
+
 * {
+  font-family: 'Poppins', sans-serif;
   border: 0;
   padding: 0;
   margin: 0;

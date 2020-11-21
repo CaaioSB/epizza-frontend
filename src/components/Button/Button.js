@@ -5,18 +5,38 @@ import { space, layout, typography, color, border } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
 import Loader from 'components/Loader'
+import Theme from 'theme'
+import Row from 'components/Row'
 
 const ButtonComponent = ({ children, isLoading, ...props }) => (
-  <Button {...props}>{isLoading ? <Loader /> : children}</Button>
+  <Theme>
+    <Button {...props}>{isLoading ? <Loader /> : children}</Button>
+  </Theme>
 )
 
-const Button = styled.button(space, layout, typography, color, border)
+const Button = styled.button`
+  background-color: ${props => `${props.theme.palette[props.color].main}`};
+  color: ${props => `${props.theme.palette[props.color].typography}`};
+
+  :hover {
+    background-color: ${props => `${props.theme.palette[props.color].dark}`};
+    transition: background-color 0.2s;
+  }
+
+  :not(:last-child) {
+    margin-right: 20px;
+  }
+  ${space};
+  ${layout};
+  ${typography};
+  ${border}
+`
 
 ButtonComponent.defaultProps = {
   width: 'regular',
-  height: 'small',
-  borderRadius: 4,
-  color: 'white'
+  height: 'xsmall',
+  color: 'primary',
+  borderRadius: 15
 }
 
 ButtonComponent.propTypes = {
