@@ -12,6 +12,7 @@
     "@styled-system/prop-types": "^5.1.5",
     "@welldone-software/why-did-you-render": "^6.0.0-rc.1",
     "axios": "^0.19.0",
+    "cz-emoji": "^1.3.1",
     "react": "^16.9.0",
     "react-app-polyfill": "^1.0.6",
     "react-async": "^10.0.0",
@@ -85,7 +86,88 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-emoji"
+    },
+    "cz-emoji": {
+      "types": [
+        {
+          "emoji": "🎸",
+          "code": ":guitar:",
+          "description": "A new feature",
+          "name": "feat:",
+          "title": "feat:"
+        },
+        {
+          "emoji": "🐛",
+          "code": ":bug:",
+          "description": "A bug fix",
+          "name": "fix:",
+          "title": "fix:"
+        },
+        {
+          "emoji": "📚",
+          "code": ":books:",
+          "description": "Documentation only changes",
+          "name": "docs:",
+          "title": "docs:"
+        },
+        {
+          "emoji": "🖌️",
+          "code": ":paintbrush:",
+          "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)",
+          "name": "style:",
+          "title": "style:"
+        },
+        {
+          "emoji": "📦",
+          "code": ":package:",
+          "description": "A code change that neither fixes a bug nor adds a feature",
+          "name": "refactor:",
+          "title": "refactor:"
+        },
+        {
+          "emoji": "🚀",
+          "code": ":rocket:",
+          "description": "A code change that improves performance",
+          "name": "perf:",
+          "title": "perf:"
+        },
+        {
+          "emoji": "🚨",
+          "code": ":police-car-light:",
+          "description": "Adding missing tests or correcting existing tests",
+          "name": "test:",
+          "title": "test:"
+        },
+        {
+          "emoji": "🛠",
+          "code": ":hammer-and-wrench:",
+          "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
+          "name": "build:",
+          "title": "build:"
+        },
+        {
+          "emoji": "⚙️",
+          "code": ":gear:",
+          "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)",
+          "name": "ci:",
+          "title": "ci:"
+        },
+        {
+          "emoji": "♻️",
+          "code": ":recycling-symbol:",
+          "description": "Other changes that don't modify src or test files",
+          "name": "chore:",
+          "title": "chore:"
+        },
+        {
+          "emoji": "🗑",
+          "code": ":wastebasket:",
+          "description": "Reverts a previous commit",
+          "name": "revert:",
+          "title": "revert:"
+        }
+      ]
     }
   }
 }
