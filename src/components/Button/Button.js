@@ -1,22 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { space, layout, typography, color, border } from 'styled-system'
+import { space, layout, typography, border } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
 import Loader from 'components/Loader'
+import Text from 'components/Text'
 import Theme from 'theme'
-import Row from 'components/Row'
 
-const ButtonComponent = ({ children, isLoading, ...props }) => (
+const ButtonComponent = ({ to, children, isLoading, ...props }) => (
   <Theme>
-    <Button {...props}>{isLoading ? <Loader /> : children}</Button>
+    <Button {...props}>{isLoading ? <Loader /> : <Text>{children}</Text>}</Button>
   </Theme>
 )
 
 const Button = styled.button`
   background-color: ${props => `${props.theme.palette[props.color].main}`};
   color: ${props => `${props.theme.palette[props.color].typography}`};
+  font-size: 12pt;
 
   :hover {
     background-color: ${props => `${props.theme.palette[props.color].dark}`};
@@ -33,7 +34,7 @@ const Button = styled.button`
 `
 
 ButtonComponent.defaultProps = {
-  width: 'regular',
+  width: 'fit',
   height: 'xsmall',
   color: 'primary',
   borderRadius: 15
