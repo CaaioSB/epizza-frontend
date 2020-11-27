@@ -7,7 +7,6 @@ import Button from 'components/Button'
 import Row from 'components/Row'
 import Card from 'components/Card'
 import Text from 'components/Text'
-import { Pizza } from 'components/Emoji'
 import { useAuth } from 'context/auth-context'
 import { loginSchema } from 'helpers/yup-schemas'
 
@@ -33,7 +32,7 @@ const Login = () => {
       alignItems='center'
       justifyContent='center'
     >
-      <Card text='Login' emoji={Pizza} textMargin={100}>
+      <Card text='Login' emoji='pizza' textMargin={100}>
         <Input name='email' register={register} placeholder='E-mail ou CPF' error={errors.email?.message} />
         <Input
           name='password'

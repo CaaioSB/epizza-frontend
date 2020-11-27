@@ -18,15 +18,13 @@ const Button = styled.button`
   background-color: ${props => `${props.theme.palette[props.color].main}`};
   color: ${props => `${props.theme.palette[props.color].typography}`};
   font-size: 12pt;
+  white-space: nowrap;
+  transition: background-color 0.5s ease, width 0.5s ease-in-out;
 
   :hover {
     background-color: ${props => `${props.theme.palette[props.color].dark}`};
-    transition: background-color 0.2s;
   }
 
-  :not(:last-child) {
-    margin-right: 20px;
-  }
   ${space};
   ${layout};
   ${typography};

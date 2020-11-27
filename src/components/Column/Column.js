@@ -7,6 +7,13 @@ import { MEDIADESKTOP } from 'helpers'
 
 const ColumnComponent = props => <Row flexDirection='column' {...props} />
 
+export const ColumnResponsive = styled(ColumnComponent)`
+  flex-flow: wrap;
+  @media (min-width: ${MEDIADESKTOP}px) {
+    flex-flow: inherit;
+  }
+`
+
 export const ColumnDesktop = styled(ColumnComponent)`
   display: none;
   @media (min-width: ${MEDIADESKTOP}px) {

@@ -16,7 +16,7 @@ const CardComponent = ({ text, emoji, textMargin, children, ...props }) => {
         <Text mb={textMargin} variant='big' fontWeight={600}>
           {text}
         </Text>
-        <EmojiComponent src={emoji} />
+        <EmojiComponent emoji={emoji} />
       </Row>
       {children}
     </Card>
@@ -31,12 +31,6 @@ const Card = styled.div`
   ${layout};
   ${typography};
   ${border}
-`
-
-const Emoji = styled.img`
-  width: 6%;
-  height: 6%;
-  margin-left: 10px;
 `
 
 CardComponent.defaultProps = {
