@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { space, layout, position } from 'styled-system'
 import { useHistory } from 'react-router-dom'
 
 import Text from 'components/Text'
-import Column, { ColumnDesktop, ColumnMobile } from 'components/Column'
-import Row from 'components/Row'
 import Button from 'components/Button'
+import { ColumnDesktop, ColumnMobile } from 'components/Column'
 import IconButton from 'components/IconButton'
 import Icon from 'components/Icon'
 import Theme from 'theme'
 import { useAuth } from 'context/auth-context'
-import { MEDIADESKTOP, MEDIATABLET } from 'helpers'
 
 const MenuComponent = ({ title, color }) => {
   const { logout } = useAuth()
@@ -66,7 +63,7 @@ const MenuComponent = ({ title, color }) => {
             onClick={() => setOpenedMenu(!openedMenu)}
           />
           <Text variant='medium' color='white' display='flex' alignSelf='center' justifyContent='center' width='100%'>
-            Pizzaria
+            {title}
           </Text>
         </TopMenu>
         <Menu opened={openedMenu}>
