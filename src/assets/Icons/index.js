@@ -1,3 +1,6 @@
 export { default as Settings } from './Settings'
 export { default as X } from './X'
 export { default as Bell } from './Bell'
+export { default as Dashboard } from './Dashboard'
+export { default as Menu } from './Menu'
+export { default as ShoppingCart } from './ShoppingCart'

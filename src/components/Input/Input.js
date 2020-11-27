@@ -5,7 +5,7 @@ import styled, { keyframes } from 'styled-components'
 import Column from 'components/Column'
 import Row from 'components/Row'
 import Text from 'components/Text'
-import EmojiComponent, { Eye } from 'components/Emoji'
+import EmojiComponent from 'components/Emoji'
 
 const InputComponent = ({ label, name, register, placeholder, error, disabled, type, ...props }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -26,7 +26,7 @@ const InputComponent = ({ label, name, register, placeholder, error, disabled, t
             top={10}
             right={15}
             position='absolute'
-            src={Eye}
+            emoji='eye'
             onMouseOver={() => handlePasswordVisible()}
             onMouseOut={() => handlePasswordVisible()}
           />

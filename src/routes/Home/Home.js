@@ -1,8 +1,10 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import ContainerComponent from 'components/Container'
+import React from 'react'
+
+import Container from 'components/Container'
 
 const Home = () => {
-  return <Fragment></Fragment>
+  return <Container></Container>
 }
 
 export default Home

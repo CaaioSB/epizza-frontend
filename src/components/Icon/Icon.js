@@ -18,7 +18,7 @@ const Icon = styled(IconComponent)`
 `
 
 Icon.defaultProps = {
-  icon: 'settings',
+  icon: 'x',
   width: 24,
   height: 24
 }

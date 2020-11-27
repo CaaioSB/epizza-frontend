@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { space, layout, typography, color, variant, position } from 'styled-system'
+import { space, layout, typography, color, variant, position, flexbox } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
 const BIG = 'big'
@@ -38,7 +38,8 @@ const TextComponent = styled.p(
   layout,
   typography,
   color,
-  position
+  position,
+  flexbox
 )
 
 TextComponent.propTypes = {

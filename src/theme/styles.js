@@ -1,7 +1,7 @@
 export const styles = {
   palette: {
     primary: { main: '#503E9D', dark: '#443485', typography: '#FFFFFF' },
-    secondary: { main: '#FCD561', dark: '#E6C257', typography: '#000000' }
+    secondary: { main: '#FCD561', dark: '#E6C257', typography: '#000000', typographyMain: '#FB6D3A' }
   },
   space: [],
   sizes: {

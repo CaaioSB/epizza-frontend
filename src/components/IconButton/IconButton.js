@@ -2,16 +2,16 @@ import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import PropTypes from 'prop-types'
 import propTypes from '@styled-system/prop-types'
-import { space, layout, border } from 'styled-system'
+import { space, layout, border, flexbox, position } from 'styled-system'
 
 import SVG from 'components/Icon'
 import Theme from 'theme'
 
-const IconComponent = ({ color, icon, blink, photo, ...props }) => (
+const IconComponent = ({ color, stroke = 'black', icon, blink, photo, ...props }) => (
   <Theme>
     <Icon color={color} {...props}>
       {blink && <Alert />}
-      {icon ? <SVG icon={icon} /> : photo && <Image src={photo} />}
+      {icon ? <SVG stroke={stroke} icon={icon} /> : photo && <Image stroke={stroke} src={photo} />}
     </Icon>
   </Theme>
 )
@@ -32,17 +32,24 @@ const Icon = styled.button`
   justify-content: center;
   align-items: center;
 
-  :not(:last-child) {
+  /* :not(:last-child) {
     margin-right: 20px;
-  }
+  } */
 
   border-radius: 15px;
-  background-color: ${({ color, theme }) => `${theme.palette[color]?.main}`};
+  background-color: ${({ color, theme }) => theme.palette[color]?.main};
   color: ${({ color, theme }) => `${theme.palette[color]?.typography}`};
+  transition: background-color 0.5s;
+
+  &:hover {
+    background-color: ${({ theme, color }) => theme.palette[color]?.dark};
+  }
 
   ${space};
   ${layout};
   ${border};
+  ${flexbox};
+  ${position}
 `
 
 const Image = styled.img`

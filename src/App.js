@@ -19,10 +19,6 @@ const AuthenticatedApp = lazy(loadAuthenticatedApp)
 const UnauthenticatedApp = lazy(() => import('./UnauthenticatedApp'))
 
 const GlobalStyle = createGlobalStyle`
-:root {
-  --primary: #503E9D
-}
-
 #root, body {
   height: 100vh
 }
