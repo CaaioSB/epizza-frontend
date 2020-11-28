@@ -2,6 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import Helmet from 'react-helmet'
+import { ToastContainer } from 'react-toastify'
 // import { Provider } from 'react-redux'
 // import createHistory from 'history/createBrowserHistory'
 // import store from './redux/store'
@@ -13,6 +14,7 @@ import { useUser } from 'context/user-context'
 import Theme from 'theme'
 
 import 'sanitize.css/sanitize.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 const loadAuthenticatedApp = () => import('./AuthenticatedApp')
 const AuthenticatedApp = lazy(loadAuthenticatedApp)
@@ -51,6 +53,17 @@ const App = () => {
     <Theme>
       <Helmet titleTemplate='Nave.rs | %s' />
       <GlobalStyle />
+      <ToastContainer
+        position='top-center'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Suspense fallback={<Loader />}>
         <Router>{user ? <AuthenticatedApp /> : <UnauthenticatedApp />}</Router>
       </Suspense>

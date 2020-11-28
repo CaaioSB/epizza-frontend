@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
 import Column from 'components/Column'
 import Input from 'components/Input'
@@ -19,8 +20,9 @@ const Login = () => {
   const onSubmit = async values => {
     try {
       await login(values)
-    } catch (error) {
-      console.log(error)
+    } catch ({ request, ...rest }) {
+      console.log(rest.response.data)
+      toast.error(rest.response.data.message)
     }
   }
 
@@ -52,7 +54,7 @@ const Login = () => {
           </Button>
         </ColumnResponsive>
         <Row mt={25} justifyContent='center'>
-          <Text variant='tiny'>E-Pizza versão 1.0.2</Text>
+          <Text variant='tiny'>E-Pizza versão {process.env.REACT_APP_VERSION}</Text>
         </Row>
       </Card>
     </Column>
