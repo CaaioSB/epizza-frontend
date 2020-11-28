@@ -50,7 +50,7 @@ const Login = () => {
           </Button>
         </Row>
         <Row mt={25} justifyContent='center'>
-          <Text variant='tiny'>E-Pizza versão 1.0</Text>
+          <Text variant='tiny'>E-Pizza versão 1.0.1</Text>
         </Row>
       </Card>
     </Column>
