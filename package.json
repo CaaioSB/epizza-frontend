@@ -3,7 +3,7 @@
   "description": "Boilerplate da nave",
   "author": "Nave Team <tech@nave.rs>",
   "license": "Private",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "dependencies": {
     "@naveteam/dispatcher": "^1.1.0",
