@@ -7,6 +7,7 @@ import propTypes from '@styled-system/prop-types'
 import Loader from 'components/Loader'
 import Text from 'components/Text'
 import Theme from 'theme'
+import { MEDIATABLET, MEDIADESKTOP } from 'helpers'
 
 const ButtonComponent = ({ to, children, isLoading, ...props }) => (
   <Theme>
@@ -23,6 +24,11 @@ const Button = styled.button`
 
   :hover {
     background-color: ${props => `${props.theme.palette[props.color].dark}`};
+  }
+
+  @media (max-width: ${MEDIADESKTOP}px) {
+    width: 100%;
+    margin: 10px 0;
   }
 
   ${space};
