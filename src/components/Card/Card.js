@@ -34,8 +34,6 @@ const Card = styled.div`
 `
 
 CardComponent.defaultProps = {
-  width: 500,
-  height: 500,
   color: 'white',
   borderRadius: 15
 }
