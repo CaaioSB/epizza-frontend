@@ -3,7 +3,7 @@
   "description": "Boilerplate da nave",
   "author": "Nave Team <tech@nave.rs>",
   "license": "Private",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "private": true,
   "dependencies": {
     "@naveteam/dispatcher": "^1.1.0",
@@ -24,6 +24,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.3.0",
     "react-spinners": "^0.9.0",
+    "react-toastify": "^6.1.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
