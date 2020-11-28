@@ -8,7 +8,7 @@ import ButtonComponent from 'components/Button'
 import CardPeople from 'components/CardPeople'
 import Grid from 'components/Grid'
 
-const Home = () => {
+const NewOrder = () => {
   return (
     <Container>
       <Body text='Selecione o Cliente' emoji='man'>
@@ -29,4 +29,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default NewOrder
