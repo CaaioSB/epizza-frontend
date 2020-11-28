@@ -73,7 +73,9 @@ const Alert = styled.div`
 
 IconComponent.defaultProps = {
   color: 'primary',
-  borderRadius: 15
+  borderRadius: 15,
+  minWidth: 40,
+  minHeight: 40
 }
 
 IconComponent.propTypes = {
