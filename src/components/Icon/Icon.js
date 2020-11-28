@@ -20,7 +20,9 @@ const Icon = styled(IconComponent)`
 Icon.defaultProps = {
   icon: 'x',
   width: 24,
-  height: 24
+  height: 24,
+  minWidth: 24,
+  minHeight: 24
 }
 
 Icon.propTypes = {

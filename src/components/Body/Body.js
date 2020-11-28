@@ -4,11 +4,10 @@ import styled from 'styled-components'
 import Row from 'components/Row'
 import Text from 'components/Text'
 import EmojiComponent from 'components/Emoji'
-import { MEDIATABLET } from 'helpers'
 
 const BodyComponent = ({ textMargin, text, emoji, children }) => (
   <Body>
-    <Row mb={50}>
+    <Row alignItems='center' mb={50}>
       <Text mb={textMargin} variant='big' fontWeight={600}>
         {text}
       </Text>
@@ -18,6 +17,8 @@ const BodyComponent = ({ textMargin, text, emoji, children }) => (
   </Body>
 )
 
-const Body = styled.div``
+const Body = styled.div`
+  align-items: center;
+`
 
 export default BodyComponent
