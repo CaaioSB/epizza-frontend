@@ -114,11 +114,41 @@ const MenuComponent = ({ title, color }) => {
           </Text>
         </TopMenu>
         <Menu opened={openedMenu}>
-          {menuItems.map((item, index) => (
-            <Button my={10} key={item.route + index} color='primary' onClick={() => pushTo(item.route)}>
-              {item.label}
-            </Button>
-          ))}
+          <Column>
+            {menuItems.map((item, index) => (
+              <Button my={10} key={item.route + index} color='primary' onClick={() => pushTo(item.route)}>
+                {item.label}
+              </Button>
+            ))}
+          </Column>
+          <Row minWidth={40} width='100%' justifyContent='space-between' style={{ contain: 'content' }}>
+            <IconButton
+              minWidth={40}
+              alignSelf='start'
+              photo='https://avatars1.githubusercontent.com/u/34246280?s=460&u=3ff9b3bf163c613f5bbab45e8b501151761fd7d4&v=4'
+              color='secondary'
+              blink={haveNotifications && !openedMenu}
+            />
+            <Row>
+              <IconButton
+                mx={5}
+                minWidth={40}
+                alignSelf='start'
+                icon='logout'
+                color='primary'
+                onClick={() => logout()}
+              />
+              <IconButton mx={5} minWidth={40} alignSelf='start' icon='settings' color='secondary' />
+              <IconButton
+                mx={5}
+                minWidth={40}
+                alignSelf='start'
+                icon='bell'
+                blink={haveNotifications}
+                color='secondary'
+              />
+            </Row>
+          </Row>
         </Menu>
       </ColumnMobile>
     </Theme>
@@ -170,6 +200,9 @@ const Menu = styled.div(
   contain: content;
   background-color: #fdfdfb;
   border-bottom: 1px solid #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   -webkit-transition: height 0.5s ease-in-out;
   -moz-transition: height 0.5s ease-in-out;
