@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { space, layout, typography, border } from 'styled-system'
+import { space, layout, typography, border, flexbox } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
 import Loader from 'components/Loader'
 import Text from 'components/Text'
 import Theme from 'theme'
-import { MEDIATABLET, MEDIADESKTOP } from 'helpers'
+import { MEDIADESKTOP } from 'helpers'
 
 const ButtonComponent = ({ to, children, isLoading, ...props }) => (
   <Theme>
@@ -34,7 +34,8 @@ const Button = styled.button`
   ${space};
   ${layout};
   ${typography};
-  ${border}
+  ${border};
+  ${flexbox}
 `
 
 ButtonComponent.defaultProps = {
