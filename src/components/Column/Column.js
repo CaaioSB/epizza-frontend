@@ -9,10 +9,16 @@ const ColumnComponent = props => <Row flexDirection='column' {...props} />
 
 export const ColumnResponsive = styled(ColumnComponent)`
   flex-direction: column-reverse;
-  flex-flow: wrap;
+  flex-flow: column;
+
   @media (min-width: ${MEDIADESKTOP}px) {
+    width: 100%;
     flex-direction: column;
-    flex-flow: inherit;
+    flex-flow: initial;
+
+    /* > *:not(:first-child):not(:last-child) {
+      margin: 0 20px;
+    } */
   }
 `
 

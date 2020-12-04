@@ -6,6 +6,7 @@ import Column from 'components/Column'
 import Row from 'components/Row'
 import Text from 'components/Text'
 import EmojiComponent from 'components/Emoji'
+import { MEDIADESKTOP } from 'helpers/constants'
 
 const InputComponent = ({ label, name, register, placeholder, error, disabled, type, ...props }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -18,7 +19,7 @@ const InputComponent = ({ label, name, register, placeholder, error, disabled, t
   }
 
   return (
-    <Column {...props}>
+    <ResponsiveInput {...props}>
       <Row position='relative'>
         <Input name={name} ref={register} placeholder={placeholder} error={error} type={inputType} />
         {type === 'password' && (
@@ -35,7 +36,7 @@ const InputComponent = ({ label, name, register, placeholder, error, disabled, t
       <StyledText error={error} color='red' ml={10} variant='tiny'>
         {error || `${placeholder} incorreto`}
       </StyledText>
-    </Column>
+    </ResponsiveInput>
   )
 }
 
@@ -43,6 +44,12 @@ const pulseError = keyframes`
   0% { border: 1px solid #cc0000; }
   50% { border: 1px solid #ff8282; }
   100% { border: 1px solid #cc0000; }
+`
+
+const ResponsiveInput = styled(Column)`
+  @media (max-width: ${MEDIADESKTOP}px) {
+    width: 100%;
+  }
 `
 
 const Input = styled.input`
@@ -53,6 +60,10 @@ const Input = styled.input`
   animation: ${pulseError} 1s;
   animation-iteration-count: ${({ error }) => (error ? 'infinite' : '0')};
   padding: ${({ type }) => (type === 'password' ? '4px 50px 4px 20px' : '4px 20px 4px 20px')};
+
+  @media (min-width: ${MEDIADESKTOP}px) {
+    width: 100%;
+  }
 `
 
 const StyledText = styled(Text)`
