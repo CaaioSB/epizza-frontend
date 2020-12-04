@@ -11,14 +11,16 @@ const BodyComponent = ({ textMargin, text, emoji, children }) => (
       <Text mb={textMargin} variant='big' fontWeight={600}>
         {text}
       </Text>
-      <EmojiComponent emoji={emoji} />
+      {emoji && <EmojiComponent emoji={emoji} />}
     </Row>
     {children}
   </Body>
 )
 
 const Body = styled.div`
-  align-items: center;
+  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
 `
 
 export default BodyComponent

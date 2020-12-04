@@ -196,6 +196,7 @@ const Menu = styled.div(
   ({ opened }) => `
   width: 100vw;
   padding: 0 20px;
+  z-index: 1;
   height: ${opened ? 'calc(100vh - 70px)' : '0px'};
   contain: content;
   background-color: #fdfdfb;

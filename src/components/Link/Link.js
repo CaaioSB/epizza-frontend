@@ -24,16 +24,19 @@ const LinkComponent = props => <LinkText {...getProps(props)} />
 
 const LinkText = styled(Text)`
   text-decoration: ${({ textDecoration }) => textDecoration};
+  color: ${({ theme, color }) => theme.palette[color].main};
 `
 
 LinkComponent.defaultProps = {
-  textDecoration: 'underline'
+  textDecoration: 'none',
+  color: 'secondary'
 }
 
 LinkComponent.propTypes = {
   textDecoration: PropTypes.string,
   to: PropTypes.string,
-  href: PropTypes.string
+  href: PropTypes.string,
+  color: PropTypes.string
 }
 
 export default LinkComponent
