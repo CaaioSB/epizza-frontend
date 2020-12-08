@@ -27,6 +27,11 @@ const MenuComponent = ({ title, color }) => {
       label: 'Novo Pedido',
       route: '/neworder',
       icon: 'ShoppingCart'
+    },
+    {
+      label: 'Cozinha',
+      route: '/orders',
+      icon: 'Awards'
     }
   ]
 
