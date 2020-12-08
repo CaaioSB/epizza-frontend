@@ -43,22 +43,27 @@ button, a {
 
 /* width */
 ::-webkit-scrollbar {
+  height: 5px;
   width: 5px;
+  border-radius: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
+  border-radius: 50px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
+  border-radius: 50px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+  border-radius: 50px;
 }
 `
 
