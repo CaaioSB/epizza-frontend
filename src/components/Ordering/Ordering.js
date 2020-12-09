@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import styled from 'styled-components'
+import { layout } from 'styled-system'
 
 import Column, { ColumnDesktop, ColumnMobile } from 'components/Column'
 import Row from 'components/Row'
@@ -8,7 +9,7 @@ import Link from 'components/Link'
 import Image from 'components/Image'
 import Button from 'components/Button'
 
-const OrderingComponent = ({ color }) => {
+const OrderingComponent = ({ type, color }) => {
   const [orderOpened, setOrderOpened] = useState(false)
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const OrderingComponent = ({ color }) => {
   return (
     <Fragment>
       <ColumnDesktop width={500}>
-        <Ordering>{BagItems()}</Ordering>
+        <Ordering>{BagItems(type)}</Ordering>
       </ColumnDesktop>
       <ColumnMobile>
         <MobileOrder color={color}>
@@ -34,21 +35,21 @@ const OrderingComponent = ({ color }) => {
                   pr={40}
                   fontWeight={600}
                 >
-                  Ver sacola
+                  {type !== 'kitchen' ? 'Ver sacola' : 'Ver items finalizados'}
                 </Text>
-                <Text fontWeight={600}>R$ 50.00</Text>
+                <Text fontWeight={600}>{type !== 'kitchen' && 'R$ 50.00'}</Text>
               </Row>
             </Column>
           </Row>
-          <MobileOrderDetaild opened={orderOpened}>{BagItems()}</MobileOrderDetaild>
+          <MobileOrderDetaild opened={orderOpened}>{BagItems(type)}</MobileOrderDetaild>
         </MobileOrder>
       </ColumnMobile>
     </Fragment>
   )
 }
 
-const OrderProductComponent = () => (
-  <OrderProduct>
+export const OrderProductComponent = ({ quantity = 1, name, value, hidePrice, ...props }) => (
+  <OrderProduct {...props}>
     <Row alignItems='center'>
       <Column>
         <Text
@@ -56,7 +57,7 @@ const OrderProductComponent = () => (
           fontWeight={600}
           style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
         >
-          1 x
+          {quantity} x
         </Text>
       </Column>
       <Column px={10}>
@@ -74,60 +75,68 @@ const OrderProductComponent = () => (
           fontWeight={600}
           style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
         >
-          Pizza Calabresa
+          {name}
         </Text>
       </Column>
-      <Column pl={10}>
-        <Text
-          fontSize={13}
-          fontWeight={600}
-          style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
-        >
-          R$ 50.00
-        </Text>
-      </Column>
+      {hidePrice && (
+        <Column pl={10}>
+          <Text
+            fontSize={13}
+            fontWeight={600}
+            style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
+          >
+            R$ {value}
+          </Text>
+        </Column>
+      )}
     </Row>
   </OrderProduct>
 )
 
-const BagItems = () => (
+const BagItems = type => (
   <Fragment>
-    <Text fontWeight={700}>Os Items</Text>
-    <DeliveryCard>
-      <Row justifyContent='space-between'>
-        <Column>
-          <Text fontSize={12}>Alameda R. Branco, nº 1230</Text>
-          <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
-            Depuração
-          </Text>
-          <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
-            Barueri, SP - 00000-000
-          </Text>
-        </Column>
-        <Column>
-          <Link fontSize={11} color='secondary' style={{ whiteSpace: 'nowrap' }}>
-            Editar
-          </Link>
-        </Column>
-      </Row>
-    </DeliveryCard>
+    <ColumnDesktop>
+      <Text fontWeight={700}>{type !== 'kitchen' ? 'Os Items' : 'Items finalizados'}</Text>
+    </ColumnDesktop>
+    {type !== 'kitchen' && (
+      <DeliveryCard>
+        <Row justifyContent='space-between'>
+          <Column>
+            <Text fontSize={12}>Alameda R. Branco, nº 123</Text>
+            <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
+              Depuração
+            </Text>
+            <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
+              Barueri, SP - 00000-000
+            </Text>
+          </Column>
+          <Column>
+            <Link fontSize={11} color='secondary' style={{ whiteSpace: 'nowrap' }}>
+              Editar
+            </Link>
+          </Column>
+        </Row>
+      </DeliveryCard>
+    )}
     <Order>
-      <OrderProductComponent />
+      <OrderProductComponent name='Pizza de Calabresa' hidePrice={type !== 'kitchen'} />
     </Order>
     <OrderDetaild>
-      <Row justifyContent='space-between'>
-        <Column alignSelf='center'>
-          <Text variant='small' fontWeight={600}>
-            Total
-          </Text>
-        </Column>
-        <Column>
-          <Text fontWeight={600}>R$ 00.00</Text>
-        </Column>
-      </Row>
+      {type !== 'kitchen' && (
+        <Row justifyContent='space-between'>
+          <Column alignSelf='center'>
+            <Text variant='small' fontWeight={600}>
+              Total
+            </Text>
+          </Column>
+          <Column>
+            <Text fontWeight={600}>R$ 00.00</Text>
+          </Column>
+        </Row>
+      )}
       <Row>
         <Button mt={40} color='secondary'>
-          Finalizar
+          Concluir
         </Button>
       </Row>
     </OrderDetaild>
@@ -168,6 +177,7 @@ const OrderProduct = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  ${layout}
 `
 
 const OrderDetaild = styled.div`
@@ -185,7 +195,7 @@ const MobileOrder = styled(ColumnMobile)`
   bottom: 0;
   background-color: ${({ color, theme }) => theme.palette[color].main};
   color: ${({ color, theme }) => theme.palette[color].typography};
-  z-index: 1;
+  /* z-index: 1; */
 `
 
 const MobileOrderDetaild = styled(Row)`

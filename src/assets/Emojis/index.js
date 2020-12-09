@@ -4,6 +4,7 @@ import Eye from './eye.png'
 import Chart from './chart.png'
 import Man from './man.png'
 import Box from './box.png'
+import Order from './order.png'
 
 const STRING_TO_EMOJIS = {
   pizza: Pizza,
@@ -11,7 +12,8 @@ const STRING_TO_EMOJIS = {
   handsUp: HandsUp,
   chart: Chart,
   man: Man,
-  box: Box
+  box: Box,
+  order: Order
 }
 
 export default STRING_TO_EMOJIS
