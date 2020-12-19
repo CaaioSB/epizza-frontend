@@ -37,7 +37,7 @@ const Icon = styled.button`
   } */
 
   border-radius: 15px;
-  background-color: ${({ color, theme }) => theme.palette[color]?.main};
+  background-color: ${({ color, theme }) => (color.startsWith('#') ? color : theme.palette[color]?.main)};
   color: ${({ color, theme }) => `${theme.palette[color]?.typography}`};
   transition: background-color 0.5s;
 

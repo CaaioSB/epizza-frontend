@@ -9,7 +9,34 @@ import Link from 'components/Link'
 import Image from 'components/Image'
 import Button from 'components/Button'
 
-const OrderingComponent = ({ type, color }) => {
+const renderingModes = {
+  default: {
+    orderingTitle: 'Os items',
+    startButtonText: 'Concluir',
+    showDeliveryCard: true,
+    hasItemPrice: true,
+    hasItemQuantity: true,
+    hasTotalPrice: false
+  },
+  kitchen: {
+    orderingTitle: 'Ver items finalizados',
+    startButtonText: 'Finalizar',
+    showDeliveryCard: false,
+    hasItemPrice: false,
+    hasItemQuantity: true,
+    hasTotalPrice: false
+  },
+  delivery: {
+    orderingTitle: 'Entregas selecionadas',
+    startButtonText: 'Iniciar',
+    showDeliveryCard: false,
+    hasItemPrice: false,
+    hasItemQuantity: false,
+    hasTotalPrice: false
+  }
+}
+
+const OrderingComponent = ({ text, type, actions, totalPrice, color }) => {
   const [orderOpened, setOrderOpened] = useState(false)
 
   useEffect(() => {
@@ -19,7 +46,9 @@ const OrderingComponent = ({ type, color }) => {
   return (
     <Fragment>
       <ColumnDesktop width={500}>
-        <Ordering>{BagItems(type)}</Ordering>
+        <Ordering>
+          <BagItems text={text} type={type} actions={actions} />
+        </Ordering>
       </ColumnDesktop>
       <ColumnMobile>
         <MobileOrder color={color}>
@@ -35,39 +64,37 @@ const OrderingComponent = ({ type, color }) => {
                   pr={40}
                   fontWeight={600}
                 >
-                  {type !== 'kitchen' ? 'Ver sacola' : 'Ver items finalizados'}
+                  {text || renderingModes[type].orderingTitle}
                 </Text>
-                <Text fontWeight={600}>{type !== 'kitchen' && 'R$ 50.00'}</Text>
+                <Text fontWeight={600}>{totalPrice && 'R$ 50.00'}</Text>
               </Row>
             </Column>
           </Row>
-          <MobileOrderDetaild opened={orderOpened}>{BagItems(type)}</MobileOrderDetaild>
+          <MobileOrderDetaild opened={orderOpened}>
+            <BagItems text={text} type={type} actions={actions} />
+          </MobileOrderDetaild>
         </MobileOrder>
       </ColumnMobile>
     </Fragment>
   )
 }
 
-export const OrderProductComponent = ({ quantity = 1, name, value, hidePrice, ...props }) => (
+export const OrderProductComponent = ({ type, quantity, name, price, ...props }) => (
   <OrderProduct {...props}>
     <Row alignItems='center'>
-      <Column>
-        <Text
-          fontSize={13}
-          fontWeight={600}
-          style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
-        >
-          {quantity} x
-        </Text>
-      </Column>
+      {quantity && (
+        <Column>
+          <Text
+            fontSize={13}
+            fontWeight={600}
+            style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
+          >
+            {quantity} x
+          </Text>
+        </Column>
+      )}
       <Column px={10}>
-        <Image
-          width={60}
-          height={30}
-          borderRadius={6}
-          style={{ objectFit: 'cover' }}
-          src='https://www.jornaldafronteira.com.br/wp-content/uploads/2019/07/5d11589e51f93-10.jpg'
-        />
+        <Image width={60} height={30} borderRadius={6} style={{ objectFit: 'cover' }} />
       </Column>
       <Column style={{ textOverflow: 'ellipsis', overflow: 'auto', width: '100%' }}>
         <Text
@@ -78,14 +105,14 @@ export const OrderProductComponent = ({ quantity = 1, name, value, hidePrice, ..
           {name}
         </Text>
       </Column>
-      {hidePrice && (
+      {price && (
         <Column pl={10}>
           <Text
             fontSize={13}
             fontWeight={600}
             style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
           >
-            R$ {value}
+            R$ {price}
           </Text>
         </Column>
       )}
@@ -93,21 +120,21 @@ export const OrderProductComponent = ({ quantity = 1, name, value, hidePrice, ..
   </OrderProduct>
 )
 
-const BagItems = type => (
+const BagItems = ({ text, type, actions, delivery, totalPrice, ...props }) => (
   <Fragment>
     <ColumnDesktop>
-      <Text fontWeight={700}>{type !== 'kitchen' ? 'Os Items' : 'Items finalizados'}</Text>
+      <Text fontWeight={700}>{text || renderingModes[type].orderingTitle}</Text>
     </ColumnDesktop>
-    {type !== 'kitchen' && (
+    {delivery && (
       <DeliveryCard>
         <Row justifyContent='space-between'>
           <Column>
-            <Text fontSize={12}>Alameda R. Branco, nº 123</Text>
+            <Text fontSize={12}>{delivery?.street}</Text>
             <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
-              Depuração
+              {delivery?.neightboor}
             </Text>
             <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
-              Barueri, SP - 00000-000
+              {delivery?.city}, {delivery?.state} - {delivery?.postalCode}
             </Text>
           </Column>
           <Column>
@@ -119,10 +146,10 @@ const BagItems = type => (
       </DeliveryCard>
     )}
     <Order>
-      <OrderProductComponent name='Pizza de Calabresa' hidePrice={type !== 'kitchen'} />
+      <OrderProductComponent type={type} name='Caio da Silva' />
     </Order>
     <OrderDetaild>
-      {type !== 'kitchen' && (
+      {totalPrice && (
         <Row justifyContent='space-between'>
           <Column alignSelf='center'>
             <Text variant='small' fontWeight={600}>
@@ -135,9 +162,13 @@ const BagItems = type => (
         </Row>
       )}
       <Row>
-        <Button mt={40} color='secondary'>
-          Concluir
-        </Button>
+        {!actions ? (
+          <Button mt={40} color='secondary'>
+            {renderingModes[type].startButtonText}
+          </Button>
+        ) : (
+          actions
+        )}
       </Row>
     </OrderDetaild>
   </Fragment>
@@ -225,7 +256,8 @@ const MobileOrderDetaild = styled(Row)`
 `
 
 OrderingComponent.defaultProps = {
-  color: 'primary'
+  color: 'primary',
+  type: 'default'
 }
 
 export default OrderingComponent
