@@ -65,6 +65,14 @@ button, a {
   background: #555;
   border-radius: 50px;
 }
+
+.leaflet-pane {
+  z-index: 0 !important;
+}
+
+.leaflet-control .leaflet-top, .leaflet-bottom {
+  z-index: 0 !important;
+}
 `
 
 const App = () => {

@@ -6,7 +6,7 @@ import Container from 'components/Container'
 import Body from 'components/Body'
 import OrderList from 'components/Order'
 
-const Order = () => (
+const Orders = () => (
   <Container>
     <Body height='100%' text='Pedidos' emoji='order'>
       <Row height='100%' overflow='auto'>
@@ -18,4 +18,4 @@ const Order = () => (
   </Container>
 )
 
-export default Order
+export default Orders

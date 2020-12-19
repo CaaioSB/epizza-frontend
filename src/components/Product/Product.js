@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import L from 'leaflet'
 
 import Text from 'components/Text'
 import Button from 'components/Button'
@@ -7,9 +9,38 @@ import Row from 'components/Row'
 import Column from 'components/Column'
 import Icon from 'components/Icon'
 
-const ProductComponent = ({ title, amount, price, ...props }) => (
+import MapIcon from 'assets/Icons/MapPin.svg'
+import 'leaflet/dist/leaflet.css'
+
+let pinIcon = L.icon({
+  iconUrl: MapIcon,
+  iconRetinaUrl: MapIcon,
+  iconAnchor: [5, 55],
+  popupAnchor: [10, -44],
+  iconSize: [25, 55]
+})
+
+const ProductComponent = ({ title, amount, price, src, coords, ...props }) => (
   <Product {...props}>
-    <ProductImage src='https://www.jornaldafronteira.com.br/wp-content/uploads/2019/07/5d11589e51f93-10.jpg' />
+    {!coords ? (
+      <ProductImage src={src} />
+    ) : (
+      coords && (
+        <MapContainer
+          center={coords}
+          zoom={14}
+          dragging={false}
+          scrollWheelZoom={false}
+          zoomControl={false}
+          style={{ borderRadius: '15px', width: '100%', height: '120px' }}
+        >
+          <TileLayer
+            url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX}`}
+          />
+          <Marker icon={pinIcon} position={coords}></Marker>
+        </MapContainer>
+      )
+    )}
     <Row justifyContent='space-between'>
       <Column>
         <Text mt={20}>{title}</Text>
@@ -24,7 +55,7 @@ const ProductComponent = ({ title, amount, price, ...props }) => (
       </Column>
       <Column>
         <Button width={100} mt={20} px={10}>
-          Adicionar
+          Entregar
         </Button>
       </Column>
     </Row>

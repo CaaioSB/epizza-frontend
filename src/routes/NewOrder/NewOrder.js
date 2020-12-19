@@ -23,6 +23,8 @@ const NewOrder = () => {
           </Grid>
           <Grid mt='70px' width='270px' fr='1fr'>
             <Product title='Pizza de Queijo' amount={5} price='50,00' />
+            <Product title='Pizza de Queijo' amount={5} price='50,00' />
+            <Product title='Pizza de Queijo' amount={5} price='50,00' />
           </Grid>
         </Body>
       </Container>

@@ -5,6 +5,8 @@ import Chart from './chart.png'
 import Man from './man.png'
 import Box from './box.png'
 import Order from './order.png'
+import Bike from './bike.png'
+import Transit from './transit.png'
 
 const STRING_TO_EMOJIS = {
   pizza: Pizza,
@@ -13,7 +15,9 @@ const STRING_TO_EMOJIS = {
   chart: Chart,
   man: Man,
   box: Box,
-  order: Order
+  order: Order,
+  bike: Bike,
+  transit: Transit
 }
 
 export default STRING_TO_EMOJIS
