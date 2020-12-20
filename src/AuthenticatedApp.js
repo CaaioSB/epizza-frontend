@@ -5,9 +5,11 @@ import NewOrder from 'routes/NewOrder'
 import Dashboard from 'routes/Dashboard'
 import NewCustomer from 'routes/NewCustomer'
 import Customers from 'routes/Customers'
-import Orders from 'routes/Orders'
 import Order from 'routes/Order'
-import { ColumnResponsive } from 'components/Column'
+import Orders from 'routes/Orders'
+import Delivery from 'routes/Delivery'
+import Delivering from 'routes/Delivering'
+import { ColumnResponsive } from 'components/Column/Column'
 import Menu from 'components/Menu'
 
 const AuthenticatedApp = () => (
@@ -20,6 +22,8 @@ const AuthenticatedApp = () => (
       <Route path='/customers' component={Customers} />
       <Route path='/orders' component={Orders} />
       <Route path='/order/:id' component={Order} />
+      <Route path='/delivery' exact component={Delivery} />
+      <Route path='/delivery/:id' component={Delivering} />
       <Redirect to='/dashboard' />
     </ColumnResponsive>
   </Switch>

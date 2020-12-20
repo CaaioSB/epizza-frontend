@@ -23,7 +23,7 @@ const Order = ({ orderNumber, color = 'success' }) => {
               </Text>
             </Row>
             <OrderBody>
-              <OrderProductComponent quantity={1} name='Calabresa' value='50.00' />
+              <OrderProductComponent type='default' quantity={1} name='Calabresa' value='50.00' />
             </OrderBody>
           </Column>
           <OrderBottom>

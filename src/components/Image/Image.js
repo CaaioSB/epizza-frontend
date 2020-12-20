@@ -22,6 +22,10 @@ const ImageComponent = props => <Image {...getProps(props)} />
 
 const Image = styled.img(background, space, layout, color, border)
 
+ImageComponent.defaultProps = {
+  backgroundColor: '#cacaca'
+}
+
 ImageComponent.propTypes = {
   backgroundImage: PropTypes.string
 }
