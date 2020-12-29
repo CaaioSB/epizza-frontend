@@ -18,10 +18,10 @@ const Dashboard = () => (
       ></InfoRectangle>
       <ColumnDesktop>
         <Grid>
-          <CardChartComponent value='5.0' text='irineu' icon='x' porcentage={10} />
-          <CardChartComponent value='100' text='teste' icon='x' porcentage={25} />
-          <CardChartComponent color='primary' value='1000' text='debug' icon='x' porcentage={50} />
-          <CardChartComponent value='1.0' text='text' icon='x' porcentage={100} />
+          <CardChartComponent value='2' text='Pedidos realizados' icon='shoppingCart' porcentage={2} />
+          <CardChartComponent value='0' text='Entregas realizadas' icon='truck' porcentage={0} />
+          <CardChartComponent value='1' text='Pedidos preparados' icon='bell' porcentage={50} color='primary' />
+          <CardChartComponent value='0' text='Pedidos cancelados' icon='x' porcentage={0} />
         </Grid>
       </ColumnDesktop>
     </Body>
