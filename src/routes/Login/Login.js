@@ -11,6 +11,7 @@ import Text from 'components/Text'
 import { useAuth } from 'context/auth-context'
 import { loginSchema } from 'helpers/yup-schemas'
 import { ColumnResponsive } from 'components/Column'
+import { version } from '../../../package.json'
 
 const Login = () => {
   const { login } = useAuth()
@@ -54,7 +55,7 @@ const Login = () => {
           </Button>
         </ColumnResponsive>
         <Row mt={25} justifyContent='center'>
-          <Text variant='tiny'>E-Pizza versão {process.env.REACT_APP_VERSION}</Text>
+          <Text variant='tiny'>E-Pizza versão {version}</Text>
         </Row>
       </Card>
     </Column>
