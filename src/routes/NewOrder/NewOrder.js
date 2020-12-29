@@ -6,6 +6,7 @@ import Grid from 'components/Grid'
 import VerticalButton from 'components/VerticalButton'
 import Product from 'components/Product'
 import Ordering from 'components/Ordering'
+import Button from 'components/Button'
 
 const NewOrder = () => {
   return (
@@ -22,9 +23,16 @@ const NewOrder = () => {
             <VerticalButton text='Mais Vendidos' icon='star' />
           </Grid>
           <Grid mt='70px' width='270px' fr='1fr'>
-            <Product title='Pizza de Queijo' amount={5} price='50,00' />
-            <Product title='Pizza de Queijo' amount={5} price='50,00' />
-            <Product title='Pizza de Queijo' amount={5} price='50,00' />
+            <Product
+              actions={
+                <Button width={100} mt={20} px={10}>
+                  Adicionar
+                </Button>
+              }
+              title='Pizza de Queijo'
+              amount={5}
+              price='50,00'
+            />
           </Grid>
         </Body>
       </Container>

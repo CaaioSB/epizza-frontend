@@ -33,7 +33,6 @@ const ProductDetailsComponent = ({ actions, coords, src, quantity, name, items, 
               src='https://www.jornaldafronteira.com.br/wp-content/uploads/2019/07/5d11589e51f93-10.jpg'
             />
           ) : (
-            // <ProductImage src={src} />
             coords && (
               <MapContainer
                 center={coords}

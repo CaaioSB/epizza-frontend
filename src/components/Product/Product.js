@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, TileLayer } from 'react-leaflet'
 import L from 'leaflet'
 
 import Text from 'components/Text'
-import Button from 'components/Button'
 import Row from 'components/Row'
 import Column from 'components/Column'
 import Icon from 'components/Icon'
@@ -20,7 +19,7 @@ let pinIcon = L.icon({
   iconSize: [25, 55]
 })
 
-const ProductComponent = ({ title, amount, price, src, coords, ...props }) => (
+const ProductComponent = ({ title, amount, price, src, coords, actions, ...props }) => (
   <Product {...props}>
     {!coords ? (
       <ProductImage src={src} />
@@ -53,11 +52,7 @@ const ProductComponent = ({ title, amount, price, src, coords, ...props }) => (
           {price && <Text variant='small'>R$ {price}</Text>}
         </Row>
       </Column>
-      <Column>
-        <Button width={100} mt={20} px={10}>
-          Entregar
-        </Button>
-      </Column>
+      <Column>{actions}</Column>
     </Row>
   </Product>
 )

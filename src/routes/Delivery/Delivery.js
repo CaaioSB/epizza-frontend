@@ -16,10 +16,16 @@ const Delivery = () => {
       <Container>
         <Body text='Entregas disponíveis' emoji='bike'>
           <Grid width='270px' fr='1fr'>
-            <Product title='João Cleber' price='4,00' coords={[-23.48919, -46.85054]} />
-            <Product title='Luis Gustavo' price='8,00' coords={[-23.48919, -46.85054]} />
-            <Product title='Caio Batista' price='9,00' coords={[-23.48919, -46.85054]} />
-            <Product title='Lucas Gomes' price='10,00' coords={[-23.48919, -46.85054]} />
+            <Product
+              actions={
+                <Button width={100} mt={20} px={10}>
+                  Entregar
+                </Button>
+              }
+              title='João Cleber'
+              price='4,00'
+              coords={[-23.48919, -46.85054]}
+            />
           </Grid>
         </Body>
       </Container>
