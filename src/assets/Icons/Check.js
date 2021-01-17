@@ -7,9 +7,9 @@ function SvgCheck(props) {
       <path
         d='M19.1666 6L8.62492 17L3.83325 12'
         stroke='white'
-        stroke-width='2'
-        stroke-linecap='round'
-        stroke-linejoin='round'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
       />
     </svg>
   )

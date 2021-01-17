@@ -49,14 +49,14 @@ const NewProduct = ({ location: { state } }) => {
                 error={errors?.title && errors?.title?.message}
                 width='40%'
                 name='title'
-                ref={register}
+                register={register}
                 control={control}
                 placeholder='Nome do Produto'
               />
               <Input
                 error={errors?.description && errors?.description?.message}
                 name='description'
-                ref={register}
+                register={register}
                 control={control}
                 placeholder='Descrição do Produto'
               />
@@ -66,7 +66,7 @@ const NewProduct = ({ location: { state } }) => {
                 error={errors?.ingredients && errors?.ingredients?.message}
                 width='40%'
                 name='ingredients'
-                ref={register}
+                register={register}
                 control={control}
                 placeholder='Ingredientes'
               />
@@ -74,11 +74,11 @@ const NewProduct = ({ location: { state } }) => {
                 error={errors?.price && errors?.price?.message}
                 width='30%'
                 name='price'
-                ref={register}
+                register={register}
                 control={control}
                 placeholder='Preço'
               />
-              <Select ref={register} control={control} name='type' width='30%'>
+              <Select register={register} control={control} name='type' width='30%'>
                 <Option>Selecione o Tipo</Option>
                 <Option value='pizza'>Pizza</Option>
                 <Option value='bebibas'>Bebibas</Option>
@@ -89,7 +89,7 @@ const NewProduct = ({ location: { state } }) => {
               <InputFile
                 error={errors?.urls && errors?.urls?.message}
                 name='urls'
-                ref={register}
+                register={register}
                 control={control}
                 placeholder='Anexe uma imagem para o produto'
                 accept='image/*'

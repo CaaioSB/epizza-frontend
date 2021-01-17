@@ -20,15 +20,19 @@ const Products = () => {
   const debouncedSearch = useDebounce(search, 500)
   const history = useHistory()
 
-  useEffect(async () => {
-    try {
-      const { data: products } = await getProducts()
-      setProducts(products)
-      setProductsBackup(products)
-    } catch (err) {
-      toast.error('Ocorreu um erro ao obter os produtos, tente novamente mais tarde.')
-      new Error(err)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data: products } = await getProducts()
+        setProducts(products)
+        setProductsBackup(products)
+      } catch (err) {
+        toast.error('Ocorreu um erro ao obter os produtos, tente novamente mais tarde.')
+        new Error(err)
+      }
     }
+
+    fetchData()
   }, [])
 
   useEffect(() => {
