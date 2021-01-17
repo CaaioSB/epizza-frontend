@@ -8,10 +8,9 @@ import Icon from 'components/Icon'
 import Text from 'components/Text'
 import Row from 'components/Row'
 import Column from 'components/Column'
-import IconButton from 'components/IconButton'
 import { MEDIADESKTOP } from 'helpers'
 
-const CardPeopleComponent = ({ name, cpf, cep, email, ...props }) => {
+const CardPeopleComponent = ({ name, cpf, cep, email, actions, ...props }) => {
   return (
     <CardPeople {...props}>
       <Icon icon='user' width={44} height={44} minWidth={44} minHeight={44} strokeWidth={1} />
@@ -44,10 +43,7 @@ const CardPeopleComponent = ({ name, cpf, cep, email, ...props }) => {
           )}
         </PeopleInformations>
       </People>
-      <Row ml='auto'>
-        <IconButton m={0} width='100%' icon='edit' color='secondary' mr={20} />
-        <IconButton m={0} width='100%' icon='arrowRight' color='primary' />
-      </Row>
+      <Row ml='auto'>{actions}</Row>
     </CardPeople>
   )
 }
