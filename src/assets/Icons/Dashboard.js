@@ -9,10 +9,10 @@ function SvgDashboard(props) {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='feather feather-grid'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='feather feather-grid'
     >
       <rect x='3' y='3' width='7' height='7'></rect>
       <rect x='14' y='3' width='7' height='7'></rect>

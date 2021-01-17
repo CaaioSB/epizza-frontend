@@ -26,7 +26,7 @@ const InputComponent = ({ label, name, register, control, placeholder, error, di
           <Controller
             as={Input}
             name={name}
-            ref={register}
+            forwardRef={register}
             control={control}
             placeholder={placeholder}
             error={error}

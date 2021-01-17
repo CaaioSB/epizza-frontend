@@ -11,10 +11,10 @@ function SvgSlider(props) {
       viewBox='0 0 24 24'
       fill='none'
       stroke='currentColor'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
-      class='feather feather-sliders'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      className='feather feather-sliders'
     >
       <line x1='4' y1='21' x2='4' y2='14'></line>
       <line x1='4' y1='10' x2='4' y2='3'></line>

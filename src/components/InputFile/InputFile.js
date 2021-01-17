@@ -44,7 +44,7 @@ const InputFileComponent = ({
           <Controller
             as={Input}
             name={name}
-            ref={register}
+            forwardRef={register}
             control={control}
             placeholder={fileName || placeholder}
             error={error}
