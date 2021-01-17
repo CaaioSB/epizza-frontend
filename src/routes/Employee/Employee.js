@@ -18,19 +18,23 @@ const Employee = () => {
 
   const history = useHistory()
 
-  useEffect(async () => {
-    try {
-      const {
-        data: { employers }
-      } = await getEmployers()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const {
+          data: { employers }
+        } = await getEmployers()
 
-      console.log(employers)
-      setEmployers(employers)
-    } catch (err) {
-      console.log(err)
-      toast.error('Ocorreu um erro desconhecido, tente novamente mais tarde.')
-      throw err
+        console.log(employers)
+        setEmployers(employers)
+      } catch (err) {
+        console.log(err)
+        toast.error('Ocorreu um erro desconhecido, tente novamente mais tarde.')
+        throw err
+      }
     }
+
+    fetchData()
   }, [])
 
   return (
