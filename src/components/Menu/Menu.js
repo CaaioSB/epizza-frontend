@@ -37,6 +37,11 @@ const MenuComponent = ({ title, color }) => {
       label: 'Entregas',
       route: '/delivery',
       icon: 'Truck'
+    },
+    {
+      label: 'Gerencial',
+      route: '/managerial',
+      icon: 'Slider'
     }
   ]
 

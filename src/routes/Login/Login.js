@@ -1,6 +1,8 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import { Controller } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
 
 import Column from 'components/Column'
 import Input from 'components/Input'
@@ -9,20 +11,24 @@ import Row from 'components/Row'
 import Card from 'components/Card'
 import Text from 'components/Text'
 import { useAuth } from 'context/auth-context'
-import { loginSchema } from 'helpers/yup-schemas'
+import { useYupValidationResolver, loginSchema } from 'helpers/yup-schemas'
 import { ColumnResponsive } from 'components/Column'
 import { version } from '../../../package.json'
 
 const Login = () => {
+  const history = useHistory()
+
   const { login } = useAuth()
 
-  const { register, handleSubmit, errors, formState } = useForm({ validationSchema: loginSchema })
+  const resolver = useYupValidationResolver(loginSchema)
+  const { register, handleSubmit, control, errors, formState } = useForm({ resolver })
 
   const onSubmit = async values => {
     try {
+      console.log(values)
+      history.push('/dashboard')
       await login(values)
     } catch ({ request, ...rest }) {
-      console.log(rest.response.data)
       toast.error(rest.response.data.message)
     }
   }
@@ -38,10 +44,19 @@ const Login = () => {
       justifyContent='center'
     >
       <Card text='Login' emoji='pizza' textMargin={100}>
-        <Input name='email' register={register} placeholder='E-mail ou CPF' error={errors.email?.message} />
-        <Input
+        <Controller
+          as={Input}
+          name='email'
+          register={register}
+          control={control}
+          placeholder='E-mail ou CPF'
+          error={errors.email?.message}
+        />
+        <Controller
+          as={Input}
           name='password'
           register={register}
+          control={control}
           placeholder='Senha'
           error={errors.password?.message}
           type='password'

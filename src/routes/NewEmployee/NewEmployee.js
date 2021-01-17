@@ -6,10 +6,10 @@ import Input from 'components/Input'
 import Column, { ColumnResponsive } from 'components/Column'
 import ButtonComponent from 'components/Button'
 
-const NewCustomer = () => {
+const NewEmployee = () => {
   return (
     <Container>
-      <Body text='Novo Cliente' emoji='man'>
+      <Body text='Novo Funcionário'>
         <Column width='100%'>
           <Input placeholder='Nome Completo' />
           <ColumnResponsive>
@@ -36,4 +36,4 @@ const NewCustomer = () => {
   )
 }
 
-export default NewCustomer
+export default NewEmployee
