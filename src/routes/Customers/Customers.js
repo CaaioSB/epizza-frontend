@@ -20,7 +20,12 @@ const Customers = () => {
           <ButtonComponent px={10} width={120} mx={15}>
             Pesquisar
           </ButtonComponent>
-          <ButtonComponent onClick={() => history.push('/newcustomer')} px={10} width={140} color='secondary'>
+          <ButtonComponent
+            onClick={() => history.push('/managerial/newcustomer')}
+            px={10}
+            width={140}
+            color='secondary'
+          >
             Novo Cliente
           </ButtonComponent>
         </ColumnResponsive>

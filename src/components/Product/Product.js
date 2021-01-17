@@ -52,7 +52,9 @@ const ProductComponent = ({ title, amount, price, src, coords, actions, ...props
           {price && <Text variant='small'>R$ {price}</Text>}
         </Row>
       </Column>
-      <Column>{actions}</Column>
+      <Column justifyContent='flex-end'>
+        <Row>{actions}</Row>
+      </Column>
     </Row>
   </Product>
 )

@@ -32,6 +32,8 @@ export const RowDesktop = styled(RowComponent)`
   @media (min-width: ${MEDIADESKTOP}px) {
     display: flex;
   }
+
+  ${space}
 `
 
 export const RowMobile = styled(RowComponent)`
@@ -39,6 +41,8 @@ export const RowMobile = styled(RowComponent)`
   @media (min-width: ${MEDIADESKTOP}px) {
     display: none;
   }
+
+  ${space}
 `
 
 export default RowComponent

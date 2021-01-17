@@ -7,9 +7,10 @@ import { space, layout, border, flexbox, position } from 'styled-system'
 import SVG from 'components/Icon'
 import Theme from 'theme'
 
-const IconComponent = ({ color, stroke = 'black', icon, blink, photo, ...props }) => (
+const IconComponent = ({ color, stroke = 'black', icon, blink, photo, children, ...props }) => (
   <Theme>
     <Icon color={color} {...props}>
+      {children}
       {blink && <Alert />}
       {icon ? <SVG stroke={stroke} icon={icon} /> : photo && <Image stroke={stroke} src={photo} />}
     </Icon>
@@ -49,7 +50,8 @@ const Icon = styled.button`
   ${layout};
   ${border};
   ${flexbox};
-  ${position}
+  ${position};
+  ${border}
 `
 
 const Image = styled.img`

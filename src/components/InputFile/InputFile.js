@@ -1,57 +1,62 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { color } from 'styled-system'
 import styled, { keyframes } from 'styled-components'
 import { Controller } from 'react-hook-form'
 
 import Column from 'components/Column'
 import Row from 'components/Row'
 import Text from 'components/Text'
-import EmojiComponent from 'components/Emoji'
+import IconButton from 'components/IconButton'
+import Icon from 'components/Icon'
 import { MEDIADESKTOP } from 'helpers/constants'
 
-const InputComponent = ({ label, name, register, control, placeholder, error, disabled, type, ...props }) => {
-  const [showPassword, setShowPassword] = useState(false)
-  const [inputType, setInputType] = useState(type)
-
-  const handlePasswordVisible = () => {
-    setShowPassword(!showPassword)
-
-    !showPassword ? setInputType('text') : setInputType(type)
-  }
+const InputFileComponent = ({
+  label,
+  name,
+  register,
+  control,
+  placeholder,
+  error,
+  accept,
+  disabled,
+  type,
+  ...props
+}) => {
+  const [fileName, setFileName] = useState()
 
   return (
     <ResponsiveInput {...props}>
       <Row position='relative'>
+        <input
+          id='file'
+          accept={accept}
+          style={{ display: 'none' }}
+          type='file'
+          onChange={e => setFileName(e.target.files[0].name || null)}
+        />
+        <UploadButton color='primary' htmlFor='file'>
+          <span>
+            <Icon icon='upload' color='white' />
+          </span>
+        </UploadButton>
         {control ? (
           <Controller
             as={Input}
             name={name}
             ref={register}
             control={control}
-            placeholder={placeholder}
+            placeholder={fileName || placeholder}
             error={error}
-            type={inputType}
             {...props}
           />
         ) : (
-          <Input name={name} placeholder={placeholder} error={error} type={inputType} {...props} />
-        )}
-        {type === 'password' && (
-          <EmojiComponent
-            top={10}
-            right={15}
-            position='absolute'
-            emoji='eye'
-            onMouseOver={() => handlePasswordVisible()}
-            onMouseOut={() => handlePasswordVisible()}
-          />
+          <Input name={name} placeholder={placeholder} error={error} {...props} />
         )}
       </Row>
-      {error && (
-        <StyledText error={error} color='red' ml={10} variant='tiny'>
-          {error || `${placeholder} incorreto`}
-        </StyledText>
-      )}
+      <StyledText error={error} color='red' ml={10} variant='tiny'>
+        {error || `${placeholder} incorreto`}
+      </StyledText>
     </ResponsiveInput>
   )
 }
@@ -82,16 +87,29 @@ const Input = styled.input`
   }
 `
 
+const UploadButton = styled.label`
+  background-color: ${props => `${props.theme.palette[props.color].main}`};
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+`
+
 const StyledText = styled(Text)`
   visibility: ${({ error }) => (error ? 'visible' : 'hidden')};
 `
 
-InputComponent.defaultProps = {
+InputFileComponent.defaultProps = {
   width: 'fit',
   mb: 30
 }
 
-InputComponent.propTypes = {
+InputFileComponent.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   register: PropTypes.func,
@@ -100,4 +118,4 @@ InputComponent.propTypes = {
   disabled: PropTypes.bool
 }
 
-export default InputComponent
+export default InputFileComponent
