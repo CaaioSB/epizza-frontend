@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import { MapContainer, Marker, TileLayer } from 'react-leaflet'
 import L from 'leaflet'
+import Skeleton from 'react-loading-skeleton'
 
 import Text from 'components/Text'
 import Row from 'components/Row'
@@ -19,10 +20,10 @@ let pinIcon = L.icon({
   iconSize: [25, 55]
 })
 
-const ProductComponent = ({ title, amount, price, src, coords, actions, ...props }) => (
+const ProductComponent = ({ title, amount, price, src, coords, actions, isLoading, ...props }) => (
   <Product {...props}>
     {!coords ? (
-      <ProductImage src={src} />
+      <Fragment>{isLoading ? <Skeleton height={115} /> : <ProductImage src={src} />}</Fragment>
     ) : (
       coords && (
         <MapContainer
@@ -41,19 +42,50 @@ const ProductComponent = ({ title, amount, price, src, coords, actions, ...props
       )
     )}
     <Row justifyContent='space-between'>
-      <Column>
-        <Text mt={20}>{title}</Text>
-        <Row>
-          {amount && (
-            <Text variant='small' mr={20}>
-              <Icon icon='user' width='15px' height='15px' /> {amount}
-            </Text>
+      <Column width='100%'>
+        {isLoading ? (
+          <Column mt={16}>
+            <span style={{ width: '50%' }}>
+              <Skeleton height={15} />
+            </span>
+          </Column>
+        ) : (
+          <Text mt={20}>{title}</Text>
+        )}
+        <Row width='100%'>
+          {isLoading ? (
+            <Column width='100%'>
+              <Skeleton height={15} width={60} />
+            </Column>
+          ) : (
+            <Fragment>
+              {amount && (
+                <Text variant='small' mr={20}>
+                  <Icon icon='user' width='15px' height='15px' /> {amount}
+                </Text>
+              )}
+              {price && <Text variant='small'>R$ {price}</Text>}
+            </Fragment>
           )}
-          {price && <Text variant='small'>R$ {price}</Text>}
         </Row>
       </Column>
       <Column justifyContent='flex-end'>
-        <Row>{actions}</Row>
+        <Row ml='auto' width='100%'>
+          {isLoading ? (
+            <Fragment>
+              <Row width='100%' justifyContent='space-between'>
+                <span style={{ marginRight: '20px' }}>
+                  <Skeleton height={40} width={40} />
+                </span>
+                <span>
+                  <Skeleton height={40} width={40} />
+                </span>
+              </Row>
+            </Fragment>
+          ) : (
+            <>{actions}</>
+          )}
+        </Row>
       </Column>
     </Row>
   </Product>

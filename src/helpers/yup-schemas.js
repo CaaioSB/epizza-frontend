@@ -51,3 +51,10 @@ export const productSchema = yup.object().shape({
   active: yup.boolean().label('Ativo'),
   ingredients: yup.array().label('Ingredientes').min(1)
 })
+
+export const employeeSchema = yup.object({
+  name: yup.string().label('Nome').required()
+  // role: yup.number().label('Cargo').required(),
+  // genre: yup.number().label('Genêro').oneOf([0, 1]).required(),
+  // email: yup.string().label('E-mail').email().required()
+})

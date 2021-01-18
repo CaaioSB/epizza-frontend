@@ -16,6 +16,7 @@ const Products = () => {
   const [search, setSearch] = useState()
   const [products, setProducts] = useState([])
   const [productsBackup, setProductsBackup] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const debouncedSearch = useDebounce(search, 500)
   const history = useHistory()
@@ -23,12 +24,15 @@ const Products = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true)
         const { data: products } = await getProducts()
         setProducts(products)
         setProductsBackup(products)
       } catch (err) {
         toast.error('Ocorreu um erro ao obter os produtos, tente novamente mais tarde.')
         new Error(err)
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -57,28 +61,40 @@ const Products = () => {
             Novo Produto
           </ButtonComponent>
         </ColumnResponsive>
-        {products.map(product => (
-          <Product
-            actions={
-              <Fragment>
-                <IconButton
-                  onClick={() =>
-                    history.push({ pathname: `/managerial/editproduct/${product['slug']}`, state: { product } })
-                  }
-                  m={0}
-                  width='100%'
-                  icon='edit'
-                  color='secondary'
-                  mr={20}
-                />
-                <IconButton m={0} width='100%' icon='arrowRight' color='primary' />
-              </Fragment>
-            }
-            title={product.title}
-            price={product.price}
-            src={product.urls[0]}
-          />
-        ))}
+        {isLoading ? (
+          <Fragment>
+            {Array(5)
+              .fill()
+              .map((_, index) => (
+                <Product key={index} isLoading />
+              ))}
+          </Fragment>
+        ) : (
+          products.map(product => (
+            <>
+              <Product
+                actions={
+                  <Fragment>
+                    <IconButton
+                      onClick={() =>
+                        history.push({ pathname: `/managerial/editproduct/${product['slug']}`, state: { product } })
+                      }
+                      m={0}
+                      width='100%'
+                      icon='edit'
+                      color='secondary'
+                      mr={20}
+                    />
+                    <IconButton m={0} width='100%' icon='arrowRight' color='primary' />
+                  </Fragment>
+                }
+                title={product.title}
+                price={product.price}
+                src={product.urls[0]}
+              />
+            </>
+          ))
+        )}
       </Body>
     </Container>
   )
