@@ -1,16 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
+import { useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import Container from 'components/Container'
 import Body from 'components/Body'
-import { ColumnResponsive } from 'components/Column'
+import Column, { ColumnResponsive } from 'components/Column'
+import Row from 'components/Row'
 import Input from 'components/Input'
 import ButtonComponent from 'components/Button'
 import CardPeople from 'components/CardPeople'
 import Grid from 'components/Grid'
-import { useHistory } from 'react-router-dom'
+import { getCustomers } from 'services/customers'
 
 const Customers = () => {
+  const [customers, setCustomers] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const history = useHistory()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true)
+        const { data } = await getCustomers()
+        setCustomers(data)
+      } catch (err) {
+        toast.error('Ocorreu um erro desconhecido. Tente novamente mais tarde.')
+        throw err
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   return (
     <Container>
@@ -29,9 +51,25 @@ const Customers = () => {
             Novo Cliente
           </ButtonComponent>
         </ColumnResponsive>
-        <Grid>
-          <CardPeople name='Caio' cpf='000 000 000 00' cep='00000000' email='caio@gmail.com' />
-        </Grid>
+        <Column>
+          {isLoading ? (
+            <Fragment>
+              {Array(5)
+                .fill()
+                .map((_, index) => (
+                  <Row mb={10}>
+                    <CardPeople key={index} isLoading />
+                  </Row>
+                ))}
+            </Fragment>
+          ) : (
+            customers.map(customer => (
+              <Row mb={10}>
+                <CardPeople name={customer.name} email={customer.email} />
+              </Row>
+            ))
+          )}
+        </Column>
       </Body>
     </Container>
   )

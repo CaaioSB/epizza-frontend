@@ -30,14 +30,14 @@ const Modules = [
     icon: 'users'
   },
   {
-    label: 'Entregas',
-    route: '/managerial/deliveries',
+    label: 'Entregas (em breve)',
+    // route: '/managerial/deliveries',
     description: 'Visualizar entregas',
     icon: 'truck'
   },
   {
-    label: 'Cargos',
-    route: '/managerial/roles',
+    label: 'Cargos (em breve)',
+    // route: '/managerial/roles',
     description: 'Visualizar, editar e remover cargos',
     icon: 'awards'
   }
@@ -61,7 +61,11 @@ const Managerial = () => {
               icon={module.icon}
               name={module.label}
               description={module.description}
-              action={<IconButton m={0} icon='external' color='primary' onClick={() => history.push(module.route)} />}
+              action={
+                module.route && (
+                  <IconButton m={0} icon='external' color='primary' onClick={() => history.push(module.route)} />
+                )
+              }
             />
           </Row>
         ))}

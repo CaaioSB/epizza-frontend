@@ -36,11 +36,15 @@ const AuthenticatedApp = () => (
       <Route path='/managerial' exact component={Managerial} />
       <Route path='/managerial/customers' component={Customers} />
       <Route path='/managerial/newcustomer' component={NewCustomer} />
+
       <Route path='/managerial/employers' component={Employee} />
       <Route path='/managerial/newemployee' component={NewEmployee} />
+      <Route path='/managerial/editemployee/:id' component={NewEmployee} />
+
       <Route path='/managerial/products' component={Products} />
       <Route path='/managerial/newproduct' exact component={NewProduct} />
       <Route path='/managerial/editproduct/:id' exact component={NewProduct} />
+
       <Route path='/managerial/deliveries' component={Deliverys} />
       <Route path='/managerial/roles' component={Roles} />
       <Route path='/managerial/newrole' component={NewRole} />
