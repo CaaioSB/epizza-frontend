@@ -10,27 +10,28 @@ import Input from 'components/Input'
 import ButtonComponent from 'components/Button'
 import CardPeople from 'components/CardPeople'
 import IconButton from 'components/IconButton'
-import Grid from 'components/Grid'
 import { getEmployers } from 'services/employee'
+import Skeleton from 'react-loading-skeleton'
 
 const Employee = () => {
   const [employers, setEmployers] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const history = useHistory()
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
       try {
         const {
           data: { employers }
         } = await getEmployers()
-
-        console.log(employers)
         setEmployers(employers)
       } catch (err) {
-        console.log(err)
         toast.error('Ocorreu um erro desconhecido, tente novamente mais tarde.')
         throw err
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -54,22 +55,43 @@ const Employee = () => {
             Novo Funcionário
           </ButtonComponent>
         </ColumnResponsive>
-        {employers.map(employee => (
-          <Row my={16}>
-            <CardPeople
-              name={employee.name}
-              cpf='000 000 000 00'
-              cep='00000000'
-              email={employee.email}
-              actions={
-                <Fragment>
-                  <IconButton m={0} width='100%' icon='edit' color='secondary' mr={20} />
-                  <IconButton m={0} width='100%' icon='arrowRight' color='primary' />
-                </Fragment>
-              }
-            />
-          </Row>
-        ))}
+        {isLoading ? (
+          <Fragment>
+            {Array(5)
+              .fill()
+              .map((_, index) => (
+                <Row mb={10}>
+                  <CardPeople key={index} isLoading />
+                </Row>
+              ))}
+          </Fragment>
+        ) : (
+          employers.map(employee => (
+            <Row mb={10}>
+              <CardPeople
+                name={employee.name}
+                cpf='000 000 000 00'
+                cep='00000000'
+                email={employee.email}
+                actions={
+                  <Fragment>
+                    <IconButton
+                      onClick={() =>
+                        history.push({ pathname: `/managerial/editemployee/${employee['_id']}`, state: { employee } })
+                      }
+                      m={0}
+                      width='100%'
+                      icon='edit'
+                      color='secondary'
+                      mr={20}
+                    />
+                    <IconButton m={0} width='100%' icon='arrowRight' color='primary' />
+                  </Fragment>
+                }
+              />
+            </Row>
+          ))
+        )}
       </Body>
     </Container>
   )

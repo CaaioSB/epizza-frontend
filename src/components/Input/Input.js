@@ -31,10 +31,11 @@ const InputComponent = ({ label, name, register, control, placeholder, error, di
             placeholder={placeholder}
             error={error}
             type={inputType}
+            disabled={disabled}
             {...props}
           />
         ) : (
-          <Input name={name} placeholder={placeholder} error={error} type={inputType} {...props} />
+          <Input name={name} placeholder={placeholder} error={error} type={inputType} disabled={disabled} {...props} />
         )}
         {type === 'password' && (
           <EmojiComponent
