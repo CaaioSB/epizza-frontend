@@ -53,8 +53,25 @@ export const productSchema = yup.object().shape({
 })
 
 export const employeeSchema = yup.object({
-  name: yup.string().label('Nome').required()
-  // role: yup.number().label('Cargo').required(),
-  // genre: yup.number().label('Genêro').oneOf([0, 1]).required(),
-  // email: yup.string().label('E-mail').email().required()
+  name: yup.string().label('Nome').required(),
+  role: yup.array().label('Cargo').required().min(1),
+  genre: yup.number().label('Genêro').oneOf([0, 1], '${path} é um campo obrigatório').required(),
+  email: yup.string().label('E-mail').email().required(),
+  cpf: yup.string().label('CPF').required(),
+  rg: yup.string().label('Registro Geral').required(),
+  mobileNumber: yup.string().label('Telefone Celular').required(),
+  cep: yup.string().label('CEP').required(),
+  street: yup.string().label('Rua').required(),
+  number: yup.string().label('Número').required(),
+  neighborhood: yup.string().label('Bairro').required(),
+  city: yup.string().label('Cidade').required(),
+  state: yup.string().label('Estado').required(),
+  active: yup.bool().label('Ativo'),
+  password: yup
+    .string()
+    .label('Senha')
+    .matches('.{8,}', 'A Senha deve conter pelo menos oito caracteres.')
+    .matches('(?=.*?[A-Z])', 'A Senha deve conter pelo menos uma letra maiúscula.')
+    .matches('(?=.*?[a-z])', 'A Senha deve conter pelo menos uma letra minúscula.')
+    .matches('(?=.*?[0-9])', 'A Senha deve conter pelo menos uma número.')
 })
