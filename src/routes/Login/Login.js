@@ -31,7 +31,7 @@ const Login = () => {
     try {
       await login(values)
     } catch ({ request, ...rest }) {
-      toast.error(rest.response.data.message)
+      toast.error(rest?.response?.data?.message || 'Não foi possível autenticar, tente novamente mais tarde.')
     }
   }
 
