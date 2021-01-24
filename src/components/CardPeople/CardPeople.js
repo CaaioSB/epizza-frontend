@@ -47,7 +47,14 @@ const CardPeopleComponent = ({ name, cpf, cep, email, actions, isLoading, ...pro
         <PeopleInformations>
           {cpf && (
             <Text color='gray' variant='small' mr={10}>
-              {cpf ? <b>CPF: {cpf}</b> : <Skeleton />}
+              {cpf ? (
+                <Fragment>
+                  <b>CPF: </b>
+                  {cpf}
+                </Fragment>
+              ) : (
+                <Skeleton />
+              )}
             </Text>
           )}
           {cep && (
