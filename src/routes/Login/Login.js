@@ -16,20 +16,22 @@ import { ColumnResponsive } from 'components/Column'
 import { version } from '../../../package.json'
 
 const Login = () => {
-  const history = useHistory()
-
   const { login } = useAuth()
 
   const resolver = useYupValidationResolver(loginSchema)
-  const { register, handleSubmit, control, errors, formState } = useForm({ resolver })
+  const {
+    register,
+    handleSubmit,
+    control,
+    errors,
+    formState: { isSubmitting }
+  } = useForm({ resolver })
 
   const onSubmit = async values => {
     try {
-      console.log(values)
-      history.push('/dashboard')
       await login(values)
     } catch ({ request, ...rest }) {
-      toast.error(rest.response.data.message)
+      toast.error(rest?.response?.data?.message || 'Não foi possível autenticar, tente novamente mais tarde.')
     }
   }
 
@@ -44,28 +46,27 @@ const Login = () => {
       justifyContent='center'
     >
       <Card text='Login' emoji='pizza' textMargin={100}>
-        <Controller
-          as={Input}
+        <Input
+          error={errors.email?.message}
           name='email'
           register={register}
           control={control}
           placeholder='E-mail ou CPF'
-          error={errors.email?.message}
         />
-        <Controller
-          as={Input}
+
+        <Input
+          error={errors.password?.message}
           name='password'
           register={register}
           control={control}
           placeholder='Senha'
-          error={errors.password?.message}
           type='password'
         />
         <ColumnResponsive mt={70}>
           <Button type='button' color='secondary' width='200px' mr={20}>
             Esqueci minha senha
           </Button>
-          <Button type='submit' color='primary' width='xlarge' isLoading={formState.isSubmitting}>
+          <Button type='submit' color='primary' width='xlarge' isLoading={isSubmitting}>
             Login
           </Button>
         </ColumnResponsive>

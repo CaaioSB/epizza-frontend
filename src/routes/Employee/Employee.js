@@ -11,11 +11,15 @@ import ButtonComponent from 'components/Button'
 import CardPeople from 'components/CardPeople'
 import IconButton from 'components/IconButton'
 import { getEmployers } from 'services/employee'
-import Skeleton from 'react-loading-skeleton'
+import { useDebounce } from 'hooks/debounce'
 
 const Employee = () => {
+  const [employersBackup, setEmployersBackup] = useState([])
   const [employers, setEmployers] = useState([])
+  const [search, setSearch] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+
+  const debouncedSearch = useDebounce(search, 500)
 
   const history = useHistory()
 
@@ -27,6 +31,7 @@ const Employee = () => {
           data: { employers }
         } = await getEmployers()
         setEmployers(employers)
+        setEmployersBackup(employers)
       } catch (err) {
         toast.error('Ocorreu um erro desconhecido, tente novamente mais tarde.')
         throw err
@@ -38,11 +43,28 @@ const Employee = () => {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    setEmployers(
+      employersBackup.filter(
+        employee =>
+          employee?.name.toLowerCase().includes(search.toLowerCase()) ||
+          employee?.cpf.toLowerCase().includes(search.toLowerCase()) ||
+          employee?.email.toLowerCase().includes(search.toLowerCase()) ||
+          employee?.cep.toLowerCase().includes(search.toLowerCase())
+      )
+    )
+  }, [debouncedSearch])
+
   return (
     <Container>
       <Body text='Funcionários'>
         <ColumnResponsive mb={20} alignItems='baseline'>
-          <Input mb={0} width='100%' placeholder='Busque pelo nome, CPF ou CEP' />
+          <Input
+            mb={0}
+            width='100%'
+            placeholder='Busque pelo nome, CPF ou CEP'
+            onChange={e => setSearch(e.target.value)}
+          />
           <ButtonComponent px={10} width={120} mx={15}>
             Pesquisar
           </ButtonComponent>
@@ -70,8 +92,8 @@ const Employee = () => {
             <Row mb={10}>
               <CardPeople
                 name={employee.name}
-                cpf='000 000 000 00'
-                cep='00000000'
+                cpf={employee?.cpf}
+                cep={employee?.cep}
                 email={employee.email}
                 actions={
                   <Fragment>
@@ -83,9 +105,7 @@ const Employee = () => {
                       width='100%'
                       icon='edit'
                       color='secondary'
-                      mr={20}
                     />
-                    <IconButton m={0} width='100%' icon='arrowRight' color='primary' />
                   </Fragment>
                 }
               />
