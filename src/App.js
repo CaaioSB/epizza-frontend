@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import Helmet from 'react-helmet'
 import { ToastContainer } from 'react-toastify'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 // import { Provider } from 'react-redux'
 // import createHistory from 'history/createBrowserHistory'
 // import store from './redux/store'
@@ -98,7 +99,9 @@ const App = () => {
         pauseOnHover
       />
       <Suspense fallback={<Loader />}>
-        <Router>{user ? <AuthenticatedApp /> : <UnauthenticatedApp />}</Router>
+        <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA} children='normal'>
+          <Router>{user ? <AuthenticatedApp /> : <UnauthenticatedApp />}</Router>
+        </GoogleReCaptchaProvider>
       </Suspense>
     </Theme>
     // </Provider>
