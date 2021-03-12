@@ -18,11 +18,11 @@ const UserProvider = props => {
 
   const { data } = useAuth()
   useEffect(() => {
-    if (!data) {
+    if (!data?.user?.data?.employee) {
       return
     }
 
-    setUser(data.user)
+    setUser(data.user.data?.employee)
   }, [data])
 
   return <UserContext.Provider value={{ user, setUser }} {...props} />
