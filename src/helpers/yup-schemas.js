@@ -75,3 +75,8 @@ export const employeeSchema = yup.object({
     .matches('(?=.*?[a-z])', 'A Senha deve conter pelo menos uma letra minúscula.')
     .matches('(?=.*?[0-9])', 'A Senha deve conter pelo menos uma número.')
 })
+
+export const roleSchema = yup.object({
+  name: yup.string().label('Nome').required(),
+  actions: yup.array().label('Permissões').required().min(1)
+})

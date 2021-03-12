@@ -37,7 +37,7 @@ const Modules = [
   },
   {
     label: 'Cargos (em breve)',
-    // route: '/managerial/roles',
+    route: '/managerial/roles',
     description: 'Visualizar, editar e remover cargos',
     icon: 'awards'
   }
