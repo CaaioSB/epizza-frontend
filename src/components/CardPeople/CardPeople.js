@@ -17,7 +17,7 @@ const CardPeopleComponent = ({ name, cpf, cep, email, actions, isLoading, ...pro
       {isLoading ? (
         <Skeleton height={40} width={40} />
       ) : (
-        <Icon icon='user' width={44} height={44} minWidth={44} minHeight={44} strokeWidth={1} />
+        <Icon icon='user' width={44} height={44} minwidth={44} minheight={44} strokeWidth={1} />
       )}
       <People width='100%' ml={30}>
         <Row width='100%' position='relative'>

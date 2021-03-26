@@ -21,8 +21,8 @@ Icon.defaultProps = {
   icon: 'x',
   width: 24,
   height: 24,
-  minWidth: 24,
-  minHeight: 24
+  minwidth: 24,
+  minheight: 24
 }
 
 Icon.propTypes = {
