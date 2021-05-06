@@ -51,7 +51,15 @@ const OrderProvider = ({ children }) => {
     setOrder({ paymentMethod: 0, total: 0 })
   }
 
-  console.log(order, customer, products)
+  const saveOrder = () => {
+    const newProducts = products?.map(({ _id, quantity, price }) => {
+      return { _id, quantity, price, total: price * quantity }
+    })
+
+    const newOrder = { customerId: customer?._id, address: customer?.address, products: newProducts, ...order }
+
+    console.log(newOrder)
+  }
 
   return (
     <OrderContext.Provider
@@ -60,6 +68,7 @@ const OrderProvider = ({ children }) => {
         customer,
         order,
         cancelOrder,
+        saveOrder,
         setCustomer,
         setProducts,
         appendProduct,

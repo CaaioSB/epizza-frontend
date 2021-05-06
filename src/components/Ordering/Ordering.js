@@ -16,7 +16,7 @@ const renderingModes = {
     showDeliveryCard: true,
     hasItemPrice: true,
     hasItemQuantity: true,
-    hasTotalPrice: false
+    hasTotalPrice: true
   },
   kitchen: {
     orderingTitle: 'Ver items finalizados',
@@ -36,7 +36,7 @@ const renderingModes = {
   }
 }
 
-const OrderingComponent = ({ text, type, actions, totalPrice, color }) => {
+const OrderingComponent = ({ text, type, actions, totalPrice, items, color }) => {
   const [orderOpened, setOrderOpened] = useState(false)
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const OrderingComponent = ({ text, type, actions, totalPrice, color }) => {
     <Fragment>
       <ColumnDesktop width={500}>
         <Ordering>
-          <BagItems text={text} type={type} actions={actions} />
+          <BagItems text={text} type={type} totalPrice={totalPrice} actions={actions} items={items} />
         </Ordering>
       </ColumnDesktop>
       <ColumnMobile>
@@ -55,7 +55,6 @@ const OrderingComponent = ({ text, type, actions, totalPrice, color }) => {
           <Row ml={20} width='100%' height='70px' alignItems='center'>
             <Column mr={20} width='100%'>
               <Row mr={20} justifyContent='space-between'>
-                <Text fontWeight={600}>0</Text>
                 <Text
                   onClick={() => setOrderOpened(!orderOpened)}
                   position='absolute'
@@ -66,12 +65,14 @@ const OrderingComponent = ({ text, type, actions, totalPrice, color }) => {
                 >
                   {text || renderingModes[type].orderingTitle}
                 </Text>
-                <Text fontWeight={600}>{totalPrice && 'R$ 50.00'}</Text>
+                <Text fontWeight={600} width='100%' textAlign='end'>
+                  R$ {totalPrice && `${totalPrice}`}
+                </Text>
               </Row>
             </Column>
           </Row>
           <MobileOrderDetaild opened={orderOpened}>
-            <BagItems text={text} type={type} actions={actions} />
+            <BagItems text={text} type={type} totalPrice={totalPrice} actions={actions} items={items} />
           </MobileOrderDetaild>
         </MobileOrder>
       </ColumnMobile>
@@ -79,22 +80,22 @@ const OrderingComponent = ({ text, type, actions, totalPrice, color }) => {
   )
 }
 
-export const OrderProductComponent = ({ type, quantity, name, price, ...props }) => (
+export const OrderProductComponent = ({ item, type, quantity, name, price, src, ...props }) => (
   <OrderProduct {...props}>
     <Row alignItems='center'>
-      {quantity && (
+      {item?.quantity && (
         <Column>
           <Text
             fontSize={13}
             fontWeight={600}
             style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
           >
-            {quantity} x
+            {item.quantity} x
           </Text>
         </Column>
       )}
       <Column px={10}>
-        <Image width={60} height={30} borderRadius={6} style={{ objectFit: 'cover' }} />
+        <Image src={src} width={60} height={30} borderRadius={6} style={{ objectFit: 'cover' }} />
       </Column>
       <Column style={{ textOverflow: 'ellipsis', overflow: 'auto', width: '100%' }}>
         <Text
@@ -102,17 +103,17 @@ export const OrderProductComponent = ({ type, quantity, name, price, ...props })
           fontWeight={600}
           style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
         >
-          {name}
+          {item?.title}
         </Text>
       </Column>
-      {price && (
+      {item?.price && (
         <Column pl={10}>
           <Text
             fontSize={13}
             fontWeight={600}
             style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
           >
-            R$ {price}
+            R$ {(item.price * item.quantity).toFixed(2)}
           </Text>
         </Column>
       )}
@@ -120,7 +121,7 @@ export const OrderProductComponent = ({ type, quantity, name, price, ...props })
   </OrderProduct>
 )
 
-const BagItems = ({ text, type, actions, delivery, totalPrice, ...props }) => (
+const BagItems = ({ text, type, actions, delivery, totalPrice, items, ...props }) => (
   <Fragment>
     <ColumnDesktop>
       <Text fontWeight={700}>{text || renderingModes[type].orderingTitle}</Text>
@@ -146,10 +147,12 @@ const BagItems = ({ text, type, actions, delivery, totalPrice, ...props }) => (
       </DeliveryCard>
     )}
     <Order>
-      <OrderProductComponent type={type} name='Caio da Silva' />
+      {items?.map(item => (
+        <OrderProductComponent item={item} src={item.urls[0]} />
+      ))}
     </Order>
     <OrderDetaild>
-      {totalPrice && (
+      {renderingModes[type].hasTotalPrice && (
         <Row justifyContent='space-between'>
           <Column alignSelf='center'>
             <Text variant='small' fontWeight={600}>
@@ -157,12 +160,12 @@ const BagItems = ({ text, type, actions, delivery, totalPrice, ...props }) => (
             </Text>
           </Column>
           <Column>
-            <Text fontWeight={600}>R$ 00.00</Text>
+            <Text fontWeight={600}>R$ {totalPrice}</Text>
           </Column>
         </Row>
       )}
       <Row>
-        {!actions ? (
+        {items?.length >= 1 && !actions ? (
           <Button mt={40} color='secondary'>
             {renderingModes[type].startButtonText}
           </Button>

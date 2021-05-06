@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+import IconButton from 'components/IconButton'
 import Container from 'components/Container'
 import Body from 'components/Body'
 import Column, { ColumnResponsive } from 'components/Column'
@@ -9,12 +10,16 @@ import Row from 'components/Row'
 import Input from 'components/Input'
 import ButtonComponent from 'components/Button'
 import CardPeople from 'components/CardPeople'
-import Grid from 'components/Grid'
+
 import { getCustomers } from 'services/customers'
 
-const Customers = () => {
+import { useOrder } from 'context/order-context'
+
+const Customers = ({ location: { state } }) => {
   const [customers, setCustomers] = useState([])
+  const [mode] = useState(state?.mode || 'default')
   const [isLoading, setIsLoading] = useState(true)
+  const { setCustomer } = useOrder()
   const history = useHistory()
 
   useEffect(() => {
@@ -63,9 +68,24 @@ const Customers = () => {
                 ))}
             </Fragment>
           ) : (
-            customers?.map(customer => (
-              <Row key={customer.id} mb={10}>
-                <CardPeople name={customer.name} email={customer.email} />
+            customers.map(customer => (
+              <Row mb={10}>
+                <CardPeople
+                  name={customer.name}
+                  email={customer.email}
+                  actions={
+                    mode === 'newOrder' && (
+                      <IconButton
+                        alignSelf='start'
+                        icon='start'
+                        onClick={() => {
+                          setCustomer(customer)
+                          history.goBack()
+                        }}
+                      />
+                    )
+                  }
+                />
               </Row>
             ))
           )}
