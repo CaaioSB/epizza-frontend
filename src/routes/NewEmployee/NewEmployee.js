@@ -17,7 +17,7 @@ import { toast } from 'react-toastify'
 import { getRoles } from 'services/role'
 
 const NewEmployee = ({ location: { state } }) => {
-  const [isEdit] = useState(state?.employee)
+  const [isEdit] = useState(state?.employee !== undefined)
   const [roles, setRoles] = useState([])
 
   useEffect(() => {
@@ -235,7 +235,7 @@ const NewEmployee = ({ location: { state } }) => {
                   const { 0: roleData } = roles.filter(currentRole => currentRole['_id'] === role)
 
                   return (
-                    <Column width='100%' mx={2}>
+                    <Column key={role} width='100%' mx={2}>
                       <HorizontalCard
                         name={roleData.name}
                         action={

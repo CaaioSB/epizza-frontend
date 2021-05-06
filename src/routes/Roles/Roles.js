@@ -52,14 +52,14 @@ const Roles = () => {
               {Array(5)
                 .fill()
                 .map((_, index) => (
-                  <Row mb={10}>
+                  <Row key={`roleCardSkeleton${index}`} mb={10}>
                     <HorizontalCard key={index} isLoading />
                   </Row>
                 ))}
             </Fragment>
           ) : (
             roles?.map(role => (
-              <Row mb={10}>
+              <Row key={role._id} mb={10}>
                 <HorizontalCard
                   icon='awards'
                   name={role.name}
