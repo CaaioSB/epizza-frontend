@@ -20,7 +20,7 @@ const HorizontalCardComponent = ({ name, description, action, icon, isLoading, .
         </span>
       ) : (
         <HorizontalCard {...props}>
-          {icon && <Icon icon={icon} width={44} height={44} minWidth={44} minHeight={44} strokeWidth={1} />}
+          {icon && <Icon icon={icon} width={44} height={44} minwidth={44} minheight={44} strokeWidth={1} />}
 
           <Card ml={30}>
             <Row justifyContent='space-between'>

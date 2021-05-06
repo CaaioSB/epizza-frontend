@@ -66,33 +66,31 @@ const Products = () => {
             {Array(5)
               .fill()
               .map((_, index) => (
-                <Product key={index} isLoading />
+                <Product key={`productSkeleton${index}`} isLoading />
               ))}
           </Fragment>
         ) : (
           products.map(product => (
-            <>
-              <Product
-                actions={
-                  <Fragment>
-                    <IconButton
-                      onClick={() =>
-                        history.push({ pathname: `/managerial/editproduct/${product['slug']}`, state: { product } })
-                      }
-                      m={0}
-                      width='100%'
-                      icon='edit'
-                      color='secondary'
-                      mr={20}
-                    />
-                    <IconButton m={0} width='100%' icon='arrowRight' color='primary' />
-                  </Fragment>
-                }
-                title={product.title}
-                price={product.price}
-                src={product.urls[0]}
-              />
-            </>
+            <Product
+              key={product._id}
+              actions={
+                <Fragment>
+                  <IconButton
+                    onClick={() =>
+                      history.push({ pathname: `/managerial/editproduct/${product['slug']}`, state: { product } })
+                    }
+                    m={0}
+                    icon='edit'
+                    color='secondary'
+                    mr={20}
+                  />
+                  <IconButton m={0} icon='arrowRight' color='primary' />
+                </Fragment>
+              }
+              title={product.title}
+              price={product.price}
+              src={product.urls[0]}
+            />
           ))
         )}
       </Body>

@@ -82,14 +82,14 @@ const Employee = () => {
             {Array(5)
               .fill()
               .map((_, index) => (
-                <Row mb={10}>
-                  <CardPeople key={index} isLoading />
+                <Row key={`employeeSkeleton_${index}`} mb={10}>
+                  <CardPeople isLoading />
                 </Row>
               ))}
           </Fragment>
         ) : (
           employers.map(employee => (
-            <Row mb={10}>
+            <Row key={employee?.cpf} mb={10}>
               <CardPeople
                 name={employee.name}
                 cpf={employee?.cpf}
@@ -102,7 +102,6 @@ const Employee = () => {
                         history.push({ pathname: `/managerial/editemployee/${employee['_id']}`, state: { employee } })
                       }
                       m={0}
-                      width='100%'
                       icon='edit'
                       color='secondary'
                     />

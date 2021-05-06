@@ -57,14 +57,14 @@ const Customers = () => {
               {Array(5)
                 .fill()
                 .map((_, index) => (
-                  <Row mb={10}>
+                  <Row key={`cardPeopleSkeleton${index}`} mb={10}>
                     <CardPeople key={index} isLoading />
                   </Row>
                 ))}
             </Fragment>
           ) : (
-            customers.map(customer => (
-              <Row mb={10}>
+            customers?.map(customer => (
+              <Row key={customer.id} mb={10}>
                 <CardPeople name={customer.name} email={customer.email} />
               </Row>
             ))
