@@ -203,7 +203,6 @@ const TopMenu = styled.div(
   display: flex;
   align-items: center;
   background-color: ${theme.palette[color].main};
-  border-bottom: 1px solid #f4f4f4;
 `
 )
 
@@ -211,7 +210,6 @@ const Menu = styled.div(
   ({ opened }) => `
   width: 100vw;
   padding: 0 20px;
-  z-index: 1;
   height: ${opened ? 'calc(100vh - 70px)' : '0px'};
   contain: content;
   background-color: #fdfdfb;

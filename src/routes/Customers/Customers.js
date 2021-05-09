@@ -76,6 +76,7 @@ const Customers = ({ location: { state } }) => {
                   actions={
                     mode === 'newOrder' && (
                       <IconButton
+                        m={0}
                         alignSelf='start'
                         icon='start'
                         onClick={() => {

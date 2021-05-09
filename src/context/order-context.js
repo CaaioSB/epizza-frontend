@@ -14,7 +14,7 @@ const useOrder = () => {
 const OrderProvider = ({ children }) => {
   const [products, setProducts] = useState([])
   const [customer, setCustomer] = useState({})
-  const [order, setOrder] = useState({ paymentMethod: 0, total: 0 })
+  const [order, setOrder] = useState({ paymentsMethods: {}, total: 0 })
 
   const appendProduct = productToAppend => {
     const hasProduct = products.some(product => product._id === productToAppend._id)
@@ -48,7 +48,7 @@ const OrderProvider = ({ children }) => {
   const cancelOrder = () => {
     setProducts([])
     setCustomer({})
-    setOrder({ paymentMethod: 0, total: 0 })
+    setOrder({ paymentsMethods: {}, total: 0 })
   }
 
   const saveOrder = () => {

@@ -134,6 +134,7 @@ const PeopleInformations = styled(Row)`
 CardPeopleComponent.defaultProps = {
   borderRadius: 15,
   paddingX: 20,
+  paddingY: 20,
   boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)'
 }
 
