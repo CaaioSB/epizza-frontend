@@ -69,7 +69,7 @@ const Customers = ({ location: { state } }) => {
             </Fragment>
           ) : (
             customers.map(customer => (
-              <Row mb={10}>
+              <Row key={customer._id} mb={10}>
                 <CardPeople
                   name={customer.name}
                   email={customer.email}

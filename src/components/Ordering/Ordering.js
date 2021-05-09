@@ -2,17 +2,21 @@ import React, { useState, useEffect, Fragment } from 'react'
 import styled from 'styled-components'
 import { layout } from 'styled-system'
 
+import { useOrder } from 'context/order-context'
+
 import Column, { ColumnDesktop, ColumnMobile } from 'components/Column'
 import Row from 'components/Row'
 import Text from 'components/Text'
 import Link from 'components/Link'
 import Image from 'components/Image'
 import Button from 'components/Button'
+import Icon from 'components/Icon'
 
 const renderingModes = {
   default: {
     orderingTitle: 'Os items',
     startButtonText: 'Concluir',
+    showShipping: true,
     showDeliveryCard: true,
     hasItemPrice: true,
     hasItemQuantity: true,
@@ -21,6 +25,7 @@ const renderingModes = {
   kitchen: {
     orderingTitle: 'Ver items finalizados',
     startButtonText: 'Finalizar',
+    showShipping: false,
     showDeliveryCard: false,
     hasItemPrice: false,
     hasItemQuantity: true,
@@ -29,6 +34,7 @@ const renderingModes = {
   delivery: {
     orderingTitle: 'Entregas selecionadas',
     startButtonText: 'Iniciar',
+    showShipping: false,
     showDeliveryCard: false,
     hasItemPrice: false,
     hasItemQuantity: false,
@@ -80,22 +86,35 @@ const OrderingComponent = ({ text, type, actions, totalPrice, items, color }) =>
   )
 }
 
-export const OrderProductComponent = ({ item, type, quantity, name, price, src, ...props }) => (
+export const OrderProductComponent = ({ type, quantity, title, price, src, icon, iconColor = 'white', ...props }) => (
   <OrderProduct {...props}>
     <Row alignItems='center'>
-      {item?.quantity && (
+      {quantity && (
         <Column>
           <Text
             fontSize={13}
             fontWeight={600}
             style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
           >
-            {item.quantity} x
+            {`${quantity} x`}
           </Text>
         </Column>
       )}
       <Column px={10}>
-        <Image src={src} width={60} height={30} borderRadius={6} style={{ objectFit: 'cover' }} />
+        {src ? (
+          <Image src={src} width={60} height={30} borderRadius={6} style={{ objectFit: 'cover' }} />
+        ) : (
+          <Column
+            width={60}
+            height={30}
+            justifyContent='center'
+            alignItems='center'
+            borderRadius={6}
+            backgroundColor='secondary'
+          >
+            <Icon icon={icon} color={iconColor} />
+          </Column>
+        )}
       </Column>
       <Column style={{ textOverflow: 'ellipsis', overflow: 'auto', width: '100%' }}>
         <Text
@@ -103,17 +122,17 @@ export const OrderProductComponent = ({ item, type, quantity, name, price, src, 
           fontWeight={600}
           style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
         >
-          {item?.title}
+          {title}
         </Text>
       </Column>
-      {item?.price && (
+      {price && (
         <Column pl={10}>
           <Text
             fontSize={13}
             fontWeight={600}
             style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
           >
-            R$ {(item.price * item.quantity).toFixed(2)}
+            R$ {(price * quantity).toFixed(2)}
           </Text>
         </Column>
       )}
@@ -121,61 +140,77 @@ export const OrderProductComponent = ({ item, type, quantity, name, price, src, 
   </OrderProduct>
 )
 
-const BagItems = ({ text, type, actions, delivery, totalPrice, items, ...props }) => (
-  <Fragment>
-    <ColumnDesktop>
-      <Text fontWeight={700}>{text || renderingModes[type].orderingTitle}</Text>
-    </ColumnDesktop>
-    {delivery && (
-      <DeliveryCard>
-        <Row justifyContent='space-between'>
-          <Column>
-            <Text fontSize={12}>{delivery?.street}</Text>
-            <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
-              {delivery?.neightboor}
-            </Text>
-            <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
-              {delivery?.city}, {delivery?.state} - {delivery?.postalCode}
-            </Text>
-          </Column>
-          <Column>
-            <Link fontSize={11} color='secondary' style={{ whiteSpace: 'nowrap' }}>
-              Editar
-            </Link>
-          </Column>
-        </Row>
-      </DeliveryCard>
-    )}
-    <Order>
-      {items?.map(item => (
-        <OrderProductComponent item={item} src={item.urls[0]} />
-      ))}
-    </Order>
-    <OrderDetaild>
-      {renderingModes[type].hasTotalPrice && (
-        <Row justifyContent='space-between'>
-          <Column alignSelf='center'>
-            <Text variant='small' fontWeight={600}>
-              Total
-            </Text>
-          </Column>
-          <Column>
-            <Text fontWeight={600}>R$ {totalPrice}</Text>
-          </Column>
-        </Row>
+const BagItems = ({ text, type, actions, delivery, totalPrice, items }) => {
+  const {
+    order: { shipping }
+  } = useOrder()
+
+  return (
+    <Fragment>
+      <ColumnDesktop>
+        <Text fontWeight={700}>{text || renderingModes[type].orderingTitle}</Text>
+      </ColumnDesktop>
+      {delivery && (
+        <DeliveryCard>
+          <Row justifyContent='space-between'>
+            <Column>
+              <Text fontSize={12}>{delivery?.street}</Text>
+              <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
+                {delivery?.neightboor}
+              </Text>
+              <Text fontSize={12} style={{ whiteSpace: 'nowrap' }}>
+                {delivery?.city}, {delivery?.state} - {delivery?.postalCode}
+              </Text>
+            </Column>
+            <Column>
+              <Link fontSize={11} color='secondary' style={{ whiteSpace: 'nowrap' }}>
+                Editar
+              </Link>
+            </Column>
+          </Row>
+        </DeliveryCard>
       )}
-      <Row>
-        {items?.length >= 1 && !actions ? (
-          <Button mt={40} color='secondary'>
-            {renderingModes[type].startButtonText}
-          </Button>
-        ) : (
-          actions
+      <Order>
+        {items?.map(({ _id, title, quantity, price, urls }) => (
+          <OrderProductComponent key={_id} title={title} quantity={quantity} price={price} src={urls[0]} />
+        ))}
+
+        {renderingModes[type].showShipping && (
+          <OrderProductComponent
+            key='testando'
+            title={shipping?.distance}
+            icon='truck'
+            quantity={1}
+            price={shipping?.fare}
+          />
         )}
-      </Row>
-    </OrderDetaild>
-  </Fragment>
-)
+      </Order>
+      <OrderDetaild>
+        {renderingModes[type].hasTotalPrice && (
+          <Row justifyContent='space-between'>
+            <Column alignSelf='center'>
+              <Text variant='small' fontWeight={600}>
+                Total
+              </Text>
+            </Column>
+            <Column>
+              <Text fontWeight={600}>R$ {totalPrice}</Text>
+            </Column>
+          </Row>
+        )}
+        <Row>
+          {items?.length >= 1 && !actions ? (
+            <Button mt={40} color='secondary'>
+              {renderingModes[type].startButtonText}
+            </Button>
+          ) : (
+            actions
+          )}
+        </Row>
+      </OrderDetaild>
+    </Fragment>
+  )
+}
 
 const Ordering = styled.div`
   height: 100vh;

@@ -73,7 +73,6 @@ const NewOrder = () => {
   }, [])
 
   useEffect(() => {
-    console.log(watch())
     setChangeValue(parseFloat(watch()?.toPay - orderDetails.total).toFixed(2))
     // setValue('change', 'Troco: R$ 1,00')
 
@@ -95,7 +94,7 @@ const NewOrder = () => {
     }
   }
 
-  const onSubmit = values => {
+  const onSubmit = async values => {
     console.log(values)
   }
 
@@ -191,7 +190,7 @@ const NewOrder = () => {
                   </ColumnMobile>
                   <Column maxHeight={150} overflow='auto' display='inline-grid'>
                     {orderProducts.map(({ urls, ...product }) => (
-                      <OrderProductComponent item={product} src={urls[0]} />
+                      <OrderProductComponent key={product._id} item={product} src={urls[0]} />
                     ))}
                   </Column>
                 </ColumnResponsive>
@@ -213,11 +212,11 @@ const NewOrder = () => {
                 <Row width='100%' justifyContent='space-between'>
                   <Column width='100%'>
                     <Grid width='70px'>
-                      {paymentsMethods?.map(({ id, slug, url }) => (
+                      {paymentsMethods?.map(({ _id, slug, url }) => (
                         <Checkbox
                           register={register}
                           name={`paymentsMethods.${slug}`}
-                          key={id}
+                          key={_id}
                           placeholder={<Image backgroundColor='white' width={30} src={url} />}
                         />
                       ))}
