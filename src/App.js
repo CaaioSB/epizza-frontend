@@ -85,7 +85,14 @@ const App = () => {
   return (
     // <Provider store={store}>
     <Theme>
-      <Helmet titleTemplate='Nave.rs | %s' />
+      <Helmet titleTemplate='Nave.rs | %s'>
+        <script
+          async
+          defer
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}`}
+          type='text/javascript'
+        ></script>
+      </Helmet>
       <GlobalStyle />
       <ToastContainer
         position='top-center'
