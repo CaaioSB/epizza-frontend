@@ -4,18 +4,18 @@ import propTypes from '@styled-system/prop-types'
 
 import { MEDIADESKTOP } from 'helpers'
 
-const RowComponent = styled.div(
-  {
-    display: 'flex'
-  },
-  flexbox,
-  space,
-  layout,
-  color,
-  border,
-  shadow,
-  position
-)
+const RowComponent = styled.div`
+  background-color: ${({ backgroundColor, theme }) =>
+    backgroundColor?.startsWith('#') ? backgroundColor : theme.palette[backgroundColor]?.main};
+  display: flex;
+  ${flexbox}
+  ${space}
+  ${layout}
+  ${color}
+  ${border}
+  ${shadow}
+  ${position};
+`
 
 RowComponent.propTypes = {
   ...propTypes.space,

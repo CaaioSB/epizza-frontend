@@ -19,3 +19,15 @@ export const validateCPF = cpf => {
   if (rest != parseInt(cpf.substring(10, 11))) return false
   return true
 }
+
+export const distanceMatrixService = (origins, destinations, callback) => {
+  var service = new google.maps.DistanceMatrixService()
+  service.getDistanceMatrix(
+    {
+      origins: origins,
+      destinations: destinations,
+      travelMode: 'DRIVING'
+    },
+    callback
+  )
+}

@@ -76,6 +76,20 @@ export const employeeSchema = yup.object({
     .matches('(?=.*?[0-9])', 'A Senha deve conter pelo menos uma número.')
 })
 
+export const customerSchema = yup.object({
+  name: yup.string().label('Nome').required(),
+  email: yup.string().label('E-mail').email(),
+  cellPhone: yup.string().label('Telefone Celular').required(),
+  address: yup.object({
+    street: yup.string().label('Rua').required(),
+    neighborhood: yup.string().label('Bairro').required(),
+    city: yup.string().label('Cidade').required(),
+    federativeUnit: yup.string().label('UF').max(2).required(),
+    cep: yup.string().label('CEP').required(),
+    complement: yup.string().label('Complemento')
+  })
+})
+
 export const roleSchema = yup.object({
   name: yup.string().label('Nome').required(),
   actions: yup.array().label('Permissões').required().min(1)

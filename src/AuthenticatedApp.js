@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
-import { toast } from 'react-toastify'
 
 import { ColumnResponsive } from 'components/Column/Column'
 import Menu from 'components/Menu'

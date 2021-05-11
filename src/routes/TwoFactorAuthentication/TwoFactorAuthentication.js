@@ -24,7 +24,6 @@ const TwoFactorAuthentication = ({ location: { state } }) => {
   const history = useHistory()
 
   useEffect(() => {
-    console.log(state)
     if (!state) {
       history.push('/')
     }
