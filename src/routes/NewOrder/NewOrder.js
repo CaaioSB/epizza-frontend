@@ -41,6 +41,7 @@ const NewOrder = () => {
     products: orderProducts,
     customer: customerDetails,
     order: orderDetails,
+    order: { shipping },
     customer,
     cancelOrder,
     appendProduct,
@@ -188,10 +189,23 @@ const NewOrder = () => {
                   <ColumnMobile>
                     <HorizontalLine my={8} />
                   </ColumnMobile>
-                  <Column maxHeight={150} overflow='auto' display='inline-grid'>
-                    {orderProducts.map(({ urls, ...product }) => (
-                      <OrderProductComponent key={product._id} item={product} src={urls[0]} />
+                  <Column maxHeight={150} overflow='auto' alignContent='baseline' display='inline-grid'>
+                    {orderProducts.map(({ urls, title, quantity, price, ...product }) => (
+                      <OrderProductComponent
+                        key={product._id}
+                        title={title}
+                        quantity={quantity}
+                        price={price}
+                        src={urls[0]}
+                      />
                     ))}
+
+                    <OrderProductComponent
+                      title={shipping?.distance}
+                      icon='truck'
+                      quantity={1}
+                      price={shipping?.fare}
+                    />
                   </Column>
                 </ColumnResponsive>
               </Row>

@@ -17,10 +17,6 @@ const RowComponent = styled.div`
   ${position};
 `
 
-RowComponent.defaultProps = {
-  backgroundColor: '#ffffff'
-}
-
 RowComponent.propTypes = {
   ...propTypes.space,
   ...propTypes.layout,

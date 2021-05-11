@@ -176,13 +176,7 @@ const BagItems = ({ text, type, actions, delivery, totalPrice, items }) => {
         ))}
 
         {renderingModes[type].showShipping && (
-          <OrderProductComponent
-            key='testando'
-            title={shipping?.distance}
-            icon='truck'
-            quantity={1}
-            price={shipping?.fare}
-          />
+          <OrderProductComponent title={shipping?.distance} icon='truck' quantity={1} price={shipping?.fare} />
         )}
       </Order>
       <OrderDetaild>
