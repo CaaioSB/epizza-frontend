@@ -13,10 +13,10 @@ const Background = styled.div`
   padding: 18px;
   background-color: rgb(0, 0, 0, 0.5);
   display: flex;
+  position: fixed;
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
   opacity: ${({ open }) => (open ? '1' : '0')};
   transition: visibility 0.2s, opacity 0.2s linear;
-  position: absolute;
   justify-content: center;
   align-items: center;
 `

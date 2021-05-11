@@ -64,7 +64,7 @@ const ProductComponent = ({ title, amount, price, src, coords, actions, isLoadin
                   <Icon icon='user' width='15px' height='15px' /> {amount}
                 </Text>
               )}
-              {price && <Text variant='small'>R$ {price}</Text>}
+              {price && <Text variant='small'>R$ {parseFloat(price).toFixed(2)}</Text>}
             </Fragment>
           )}
         </Row>

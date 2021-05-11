@@ -8,6 +8,7 @@ import Order from './order.png'
 import Bike from './bike.png'
 import Transit from './transit.png'
 import Folder from './folder.png'
+import CreditCard from './credit-card.png'
 
 const STRING_TO_EMOJIS = {
   pizza: Pizza,
@@ -19,7 +20,8 @@ const STRING_TO_EMOJIS = {
   order: Order,
   bike: Bike,
   transit: Transit,
-  folder: Folder
+  folder: Folder,
+  creditCard: CreditCard
 }
 
 export default STRING_TO_EMOJIS

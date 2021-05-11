@@ -9,7 +9,19 @@ import Text from 'components/Text'
 import EmojiComponent from 'components/Emoji'
 import { MEDIADESKTOP } from 'helpers/constants'
 
-const InputComponent = ({ label, name, register, control, placeholder, error, disabled, type, ref, ...props }) => {
+const InputComponent = ({
+  label,
+  name,
+  register,
+  control,
+  readonly,
+  placeholder,
+  error,
+  disabled,
+  type,
+  ref,
+  ...props
+}) => {
   const [showPassword, setShowPassword] = useState(false)
   const [inputType, setInputType] = useState(type)
 
@@ -43,6 +55,7 @@ const InputComponent = ({ label, name, register, control, placeholder, error, di
             type={inputType}
             disabled={disabled}
             ref={register}
+            readonly={readonly}
             {...props}
           />
         )}

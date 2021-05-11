@@ -26,6 +26,7 @@ const CardComponent = ({ text, emoji, textMargin, children, ...props }) => {
 const Card = styled.div`
   padding: 40px;
   background: #ffffff;
+  color: black;
   box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
   ${space};
   ${layout};
@@ -34,7 +35,7 @@ const Card = styled.div`
 `
 
 CardComponent.defaultProps = {
-  color: 'white',
+  color: 'black',
   borderRadius: 15
 }
 
