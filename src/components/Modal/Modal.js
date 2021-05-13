@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Modal = ({ open, children }) => {
+export const ModalComponent = ({ open, children }) => {
   return <Background open={open}>{children}</Background>
 }
 
@@ -21,4 +21,4 @@ const Background = styled.div`
   align-items: center;
 `
 
-export default Modal
+export default ModalComponent

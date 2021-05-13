@@ -11,7 +11,7 @@ import IconButton from 'components/IconButton'
 import Icon from 'components/Icon'
 import { MEDIADESKTOP } from 'helpers/constants'
 
-const InputFileComponent = ({
+export const InputFileComponent = ({
   label,
   name,
   register,

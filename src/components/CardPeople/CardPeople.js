@@ -11,7 +11,7 @@ import Row from 'components/Row'
 import Column, { ColumnDesktop, ColumnMobile } from 'components/Column'
 import { MEDIADESKTOP } from 'helpers'
 
-const CardPeopleComponent = ({ name, cpf, cep, email, actions, isLoading, ...props }) => {
+export const CardPeopleComponent = ({ name, cpf, cep, email, actions, isLoading, ...props }) => {
   return (
     <CardPeople {...props}>
       {isLoading ? (

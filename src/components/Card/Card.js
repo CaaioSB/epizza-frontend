@@ -9,7 +9,7 @@ import Text from 'components/Text'
 import Row from 'components/Row'
 import EmojiComponent from 'components/Emoji'
 
-const CardComponent = ({ text, emoji, textMargin, children, ...props }) => {
+export const CardComponent = ({ text, emoji, textMargin, children, ...props }) => {
   return (
     <Card {...props}>
       <Row>

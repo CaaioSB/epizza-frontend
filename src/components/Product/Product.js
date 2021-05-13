@@ -20,7 +20,7 @@ let pinIcon = L.icon({
   iconSize: [25, 55]
 })
 
-const ProductComponent = ({ title, amount, price, src, coords, actions, isLoading, ...props }) => (
+export const ProductComponent = ({ title, amount, price, src, coords, actions, isLoading, ...props }) => (
   <Product {...props}>
     {!coords ? (
       <Fragment>{isLoading ? <Skeleton height={115} /> : <ProductImage src={src} />}</Fragment>

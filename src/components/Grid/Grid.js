@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const GridComponent = ({ children, ...props }) => <Grid {...props}>{children}</Grid>
+export const GridComponent = ({ children, ...props }) => <Grid {...props}>{children}</Grid>
 
 const Grid = styled.div(
   ({ width, height, fr, mt }) => `

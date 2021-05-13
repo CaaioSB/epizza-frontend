@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { border, space, layout } from 'styled-system'
 
-const VerticalLineComponent = props => {
+export const VerticalLineComponent = props => {
   return <VerticalLine {...props} />
 }
 

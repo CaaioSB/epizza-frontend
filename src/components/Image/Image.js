@@ -18,7 +18,7 @@ const getProps = ({ backgroundImage, ...props }) => {
   }
 }
 
-const ImageComponent = props => <Image {...getProps(props)} />
+export const ImageComponent = props => <Image {...getProps(props)} />
 
 const Image = styled.img(background, space, layout, color, border)
 

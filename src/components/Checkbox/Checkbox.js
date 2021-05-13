@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import propTypes from '@styled-system/prop-types'
 import { Controller } from 'react-hook-form'
 
-const CheckBoxComponent = ({ color, name, register, control, setValue, value, placeholder, ...props }) => {
+export const CheckBoxComponent = ({ color, name, register, control, setValue, value, placeholder, ...props }) => {
   return (
     <CheckBoxWrapper {...props}>
       <label>

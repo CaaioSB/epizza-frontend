@@ -8,7 +8,7 @@ import Row from 'components/Row'
 import Column, { ColumnResponsive } from 'components/Column'
 import Button from 'components/Button'
 
-const RouteLeavingGuard = ({ when, navigate, shouldBlockNavigation }) => {
+export const RouteLeavingGuardComponent = ({ when, navigate, shouldBlockNavigation }) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [lastLocation, setLastLocation] = useState(null)
   const [confirmedNavigation, setConfirmedNavigation] = useState(false)
@@ -71,4 +71,4 @@ const RouteLeavingGuard = ({ when, navigate, shouldBlockNavigation }) => {
     </>
   )
 }
-export default RouteLeavingGuard
+export default RouteLeavingGuardComponent

@@ -7,7 +7,7 @@ import Column from 'components/Column'
 
 import { MEDIADESKTOP } from 'helpers'
 
-const ContainerComponent = ({ children, as = Column, ...props }) => (
+export const ContainerComponent = ({ children, as = Column, ...props }) => (
   <Container as={as} {...props}>
     {children}
   </Container>
