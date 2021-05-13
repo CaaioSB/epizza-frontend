@@ -5,7 +5,7 @@ import Row from 'components/Row'
 
 import { MEDIADESKTOP } from 'helpers'
 
-const ColumnComponent = props => <Row flexDirection='column' {...props} />
+export const ColumnComponent = props => <Row flexDirection='column' {...props} />
 
 export const ColumnResponsive = styled(ColumnComponent)`
   flex-direction: column-reverse;

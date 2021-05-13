@@ -9,11 +9,11 @@ import Text from 'components/Text'
 import Link from 'components/Link'
 import EmojiComponent from 'components/Emoji'
 
-const BodyComponent = ({ textMargin, text, emoji, children, ...props }) => {
+export const BodyComponent = ({ textMargin, text, emoji, children, ...props }) => {
   const history = useHistory()
 
   return (
-    <Body {...props}>
+    <StyledBody {...props}>
       <Row alignItems='center' mb={50}>
         {
           <Link style={{ color: 'black' }} onClick={() => history.goBack()}>
@@ -26,11 +26,11 @@ const BodyComponent = ({ textMargin, text, emoji, children, ...props }) => {
         {emoji && <EmojiComponent emoji={emoji} />}
       </Row>
       {children}
-    </Body>
+    </StyledBody>
   )
 }
 
-const Body = styled.div`
+const StyledBody = styled.div`
   /* align-items: center; */
   display: flex;
   flex-direction: column;

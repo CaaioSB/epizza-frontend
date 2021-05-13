@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
-const SplashComponent = ({ isLoading }) => {
+export const SplashComponent = ({ isLoading }) => {
   return (
     <Splash isLoading={isLoading}>
       <Logo src='https://res.cloudinary.com/epizza/image/upload/v1611869212/whitelabel/epizzaLogo_swiqeu.svg' />

@@ -8,7 +8,7 @@ import Text from 'components/Text'
 import Column from 'components/Column'
 import Row from 'components/Row'
 
-const CardChartComponent = ({ color, icon, value, text, porcentage = 0, ...props }) => {
+export const CardChartComponent = ({ color, icon, value, text, porcentage = 0, ...props }) => {
   return (
     <CardChart {...props}>
       <Row>

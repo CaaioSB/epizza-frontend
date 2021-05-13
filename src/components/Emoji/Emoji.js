@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import STRING_TO_EMOJIS from 'assets/Emojis'
 
-const EmojiComponent = ({ emoji, ...props }) => {
+export const EmojiComponent = ({ emoji, ...props }) => {
   return <Emoji src={STRING_TO_EMOJIS[emoji]} {...props} />
 }
 

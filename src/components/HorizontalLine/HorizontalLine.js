@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { border, space } from 'styled-system'
 
-const HorizontalLineComponent = props => {
+export const HorizontalLineComponent = props => {
   return <HorizontalLine {...props} />
 }
 

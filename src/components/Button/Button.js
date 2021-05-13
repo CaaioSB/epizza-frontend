@@ -9,13 +9,13 @@ import Text from 'components/Text'
 import Theme from 'theme'
 import { MEDIADESKTOP } from 'helpers'
 
-const ButtonComponent = ({ to, children, isLoading, ...props }) => (
+export const ButtonComponent = ({ to, children, isLoading, ...props }) => (
   <Theme>
     <Button {...props}>{isLoading ? <Loader /> : <Text>{children}</Text>}</Button>
   </Theme>
 )
 
-const Button = styled.button`
+export const Button = styled.button`
   background-color: ${props => `${props.theme.palette[props.color].main}`};
   color: ${props => `${props.theme.palette[props.color].typography}`};
   font-size: 12pt;

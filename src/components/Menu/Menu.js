@@ -11,7 +11,7 @@ import Icon from 'components/Icon'
 import Theme from 'theme'
 import { useAuth } from 'context/auth-context'
 
-const MenuComponent = ({ title, color }) => {
+export const MenuComponent = ({ title, color }) => {
   const { logout } = useAuth()
   const history = useHistory()
   const [openedMenu, setOpenedMenu] = useState(false)

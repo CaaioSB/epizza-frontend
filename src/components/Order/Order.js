@@ -8,7 +8,7 @@ import Row from 'components/Row'
 import { OrderProductComponent } from 'components/Ordering'
 import IconButton from 'components/IconButton'
 
-const Order = ({ orderNumber, color = 'success' }) => {
+export const OrderComponent = ({ orderNumber, color = 'success' }) => {
   const history = useHistory()
 
   return (
@@ -70,4 +70,4 @@ const OrderBottom = styled.div`
   padding: 0 20px;
 `
 
-export default Order
+export default OrderComponent

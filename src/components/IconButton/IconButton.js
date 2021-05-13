@@ -7,13 +7,13 @@ import { space, layout, border, flexbox, position } from 'styled-system'
 import SVG from 'components/Icon'
 import Theme from 'theme'
 
-const IconComponent = ({ color, stroke = 'black', icon, blink, photo, children, ...props }) => (
+export const IconButtonComponent = ({ color, stroke = 'black', icon, blink, photo, children, ...props }) => (
   <Theme>
-    <Icon color={color} {...props}>
+    <IconButon color={color} {...props}>
       {children}
       {blink && <Alert />}
       {icon ? <SVG stroke={stroke} icon={icon} /> : photo && <Image stroke={stroke} src={photo} />}
-    </Icon>
+    </IconButon>
   </Theme>
 )
 
@@ -23,7 +23,7 @@ const pulseAlert = (primary, secondary) => keyframes`
   100% {  background-color: ${primary}; }
 `
 
-const Icon = styled.button`
+const IconButon = styled.button`
   width: 40px;
   height: 40px;
   margin: 20px 0;
@@ -73,14 +73,14 @@ const Alert = styled.div`
   animation-iteration-count: infinite;
 `
 
-IconComponent.defaultProps = {
+IconButtonComponent.defaultProps = {
   color: 'primary',
   borderRadius: 15,
   minwidth: 40,
   minheight: 40
 }
 
-IconComponent.propTypes = {
+IconButtonComponent.propTypes = {
   disabled: PropTypes.bool,
   ...propTypes.space,
   ...propTypes.layout,
@@ -89,4 +89,4 @@ IconComponent.propTypes = {
   ...propTypes.border
 }
 
-export default IconComponent
+export default IconButtonComponent

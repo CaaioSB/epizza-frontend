@@ -10,7 +10,7 @@ import Row from 'components/Row'
 import Column from 'components/Column'
 import { MEDIADESKTOP } from 'helpers'
 
-const InfoRectangleComponent = ({ title, subtitle, color, ...props }) => (
+export const InfoRectangleComponent = ({ title, subtitle, color, ...props }) => (
   <InfoRectangle color={color} {...props}>
     <Row>
       <Column height='fit-content'>

@@ -4,7 +4,7 @@ import propTypes from '@styled-system/prop-types'
 
 import { MEDIADESKTOP } from 'helpers'
 
-const RowComponent = styled.div`
+export const RowComponent = styled.div`
   background-color: ${({ backgroundColor, theme }) =>
     backgroundColor?.startsWith('#') ? backgroundColor : theme.palette[backgroundColor]?.main};
   display: flex;

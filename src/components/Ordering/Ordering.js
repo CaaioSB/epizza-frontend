@@ -42,7 +42,7 @@ const renderingModes = {
   }
 }
 
-const OrderingComponent = ({ text, type, actions, totalPrice, items, color }) => {
+export const OrderingComponent = ({ text, type, actions, totalPrice, items, color }) => {
   const [orderOpened, setOrderOpened] = useState(false)
 
   useEffect(() => {

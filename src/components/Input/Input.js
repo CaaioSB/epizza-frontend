@@ -9,7 +9,7 @@ import Text from 'components/Text'
 import EmojiComponent from 'components/Emoji'
 import { MEDIADESKTOP } from 'helpers/constants'
 
-const InputComponent = ({
+export const InputComponent = ({
   label,
   name,
   register,

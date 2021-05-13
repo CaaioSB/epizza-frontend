@@ -20,7 +20,7 @@ let pinIcon = L.icon({
   iconSize: [25, 55]
 })
 
-const ProductDetailsComponent = ({ actions, coords, src, quantity, name, items, description, ...props }) => {
+export const ProductDetailsComponent = ({ actions, coords, src, quantity, name, items, description, ...props }) => {
   return (
     <ProductDetails>
       <ColumnResponsive height='100%'>

@@ -20,7 +20,7 @@ const getProps = ({ to, textVariant, ...props }) => {
   }
 }
 
-const LinkComponent = props => <LinkText {...getProps(props)} />
+export const LinkComponent = props => <LinkText {...getProps(props)} />
 
 const LinkText = styled(Text)`
   text-decoration: ${({ textDecoration }) => textDecoration};

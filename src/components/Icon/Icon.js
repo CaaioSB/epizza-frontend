@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import * as Icons from 'assets/Icons'
 
-const IconComponent = ({ icon, ...props }) => {
+export const IconComponent = ({ icon, ...props }) => {
   const IconSrc = Icons[`${icon[0].toUpperCase()}${icon.slice(1).replace(/([-_]\w)/g, g => g[1].toUpperCase())}`]
 
   return IconSrc ? <IconSrc {...props} /> : <Icons.X {...props} />

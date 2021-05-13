@@ -11,7 +11,7 @@ import Row from 'components/Row'
 import Column from 'components/Column'
 import { MEDIADESKTOP } from 'helpers'
 
-const HorizontalCardComponent = ({ name, description, action, icon, isLoading, ...props }) => {
+export const HorizontalCardComponent = ({ name, description, action, icon, isLoading, ...props }) => {
   return (
     <Row width='100%' minHeight={44}>
       {isLoading ? (

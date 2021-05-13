@@ -7,7 +7,7 @@ import Row from 'components/Row'
 import Text from 'components/Text'
 import Column from 'components/Column'
 
-const SelectComponent = ({ error, children, width, control, ref, ...props }) => {
+export const SelectComponent = ({ error, children, width, control, ref, ...props }) => {
   return (
     <Column width={width || '100%'} mb={30}>
       <Row width={width || '100%'}>

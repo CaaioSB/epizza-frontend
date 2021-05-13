@@ -9,7 +9,7 @@ const REGULAR = 'regular'
 const SMALL = 'small'
 const TINY = 'tiny'
 
-const TextComponent = styled.p(
+export const TextComponent = styled.p(
   variant({
     variants: {
       [BIG]: {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Icon from 'components/Icon'
 import Text from 'components/Text'
 
-const VerticalButtonComponent = ({ text, icon, actived, ...props }) => (
+export const VerticalButtonComponent = ({ text, icon, actived, ...props }) => (
   <VerticalButton {...props} actived={actived}>
     <IconCircle actived={actived}>
       <Icon icon={icon} />
