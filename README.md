@@ -1,28 +1,6 @@
 # E Pizza
 
 Sistema para gerenciamento de pizzarias.
-## Estrutura de Pastas
-
-```
-├── /public
-├── /src
-|   ├── /components
-|   |    ├── /<component_name_folder>
-|   |    |    ├── <component_name_file>.js
-|   |    |    ├── index.js
-|   ├── /helpers
-|   |    ├── <helper_file>.js
-|   |    ├── index.js
-|   ├── /providers
-|   ├── /services
-|   ├── /routes
-|   |    ├── /<route_name_folder>
-|   |    |    ├── <route_name_file>.js
-|   |    |    ├── index.js
-|   ├── /theme
-|   ├── /context (optional)
-|   ├── /redux (optional)
-```
 
 ## Start
 
