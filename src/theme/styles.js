@@ -1,8 +1,18 @@
 export const styles = {
   palette: {
     primary: { main: '#503E9D', dark: '#443485', typography: '#FFFFFF' },
-    secondary: { main: '#FCD561', dark: '#E6C257', typography: '#000000', typographyMain: '#FB6D3A' },
-    default: { success: '#44AF69', error: '#F8333C', info: '#2B9EB3', warning: '#F66800' }
+    secondary: {
+      main: '#FCD561',
+      dark: '#E6C257',
+      typography: '#000000',
+      typographyMain: '#FB6D3A'
+    },
+    default: {
+      success: '#44AF69',
+      error: '#F8333C',
+      info: '#2B9EB3',
+      warning: '#F66800'
+    }
   },
   space: [],
   sizes: {

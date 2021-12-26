@@ -38,7 +38,10 @@ const Login = () => {
       await login({ ...values, token })
     } catch (rest) {
       if (rest?.response?.status === 401 && rest?.response?.data?.nextStep === 'twofactorAuthentication') {
-        return history.push({ pathname: '/twofactorAuthentication', state: { ...values } })
+        return history.push({
+          pathname: '/twofactorAuthentication',
+          state: { ...values }
+        })
       }
 
       toast.error(rest?.response?.data?.message || 'Não foi possível autenticar, tente novamente mais tarde.')

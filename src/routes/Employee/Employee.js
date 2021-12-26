@@ -99,7 +99,10 @@ const Employee = () => {
                   <Fragment>
                     <IconButton
                       onClick={() =>
-                        history.push({ pathname: `/managerial/editemployee/${employee['_id']}`, state: { employee } })
+                        history.push({
+                          pathname: `/managerial/editemployee/${employee['_id']}`,
+                          state: { employee }
+                        })
                       }
                       m={0}
                       icon='edit'

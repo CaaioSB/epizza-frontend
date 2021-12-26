@@ -100,7 +100,10 @@ const NewOrder = () => {
   }
 
   if (!customerDetails?._id) {
-    history.push({ pathname: '/managerial/customers', state: { mode: 'newOrder' } })
+    history.push({
+      pathname: '/managerial/customers',
+      state: { mode: 'newOrder' }
+    })
     return null
   } else {
     return (

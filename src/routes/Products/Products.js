@@ -77,7 +77,10 @@ const Products = () => {
                 <Fragment>
                   <IconButton
                     onClick={() =>
-                      history.push({ pathname: `/managerial/editproduct/${product['slug']}`, state: { product } })
+                      history.push({
+                        pathname: `/managerial/editproduct/${product['slug']}`,
+                        state: { product }
+                      })
                     }
                     m={0}
                     icon='edit'

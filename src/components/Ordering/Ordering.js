@@ -94,7 +94,11 @@ export const OrderProductComponent = ({ type, quantity, title, price, src, icon,
           <Text
             fontSize={13}
             fontWeight={600}
-            style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
+            style={{
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap'
+            }}
           >
             {`${quantity} x`}
           </Text>
@@ -120,7 +124,11 @@ export const OrderProductComponent = ({ type, quantity, title, price, src, icon,
         <Text
           fontSize={13}
           fontWeight={600}
-          style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
+          style={{
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap'
+          }}
         >
           {title}
         </Text>
@@ -130,7 +138,11 @@ export const OrderProductComponent = ({ type, quantity, title, price, src, icon,
           <Text
             fontSize={13}
             fontWeight={600}
-            style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
+            style={{
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap'
+            }}
           >
             R$ {(price * quantity).toFixed(2)}
           </Text>

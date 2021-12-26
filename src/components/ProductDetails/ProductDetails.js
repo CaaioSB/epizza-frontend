@@ -40,7 +40,12 @@ export const ProductDetailsComponent = ({ actions, coords, src, quantity, name, 
                 dragging={false}
                 scrollWheelZoom={false}
                 zoomControl={false}
-                style={{ borderRadius: '15px', width: '100%', minHeight: '200px', height: '100%' }}
+                style={{
+                  borderRadius: '15px',
+                  width: '100%',
+                  minHeight: '200px',
+                  height: '100%'
+                }}
               >
                 <TileLayer
                   url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX}`}
