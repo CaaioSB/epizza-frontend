@@ -69,7 +69,12 @@ const Roles = () => {
                       m={0}
                       icon='external'
                       color='primary'
-                      onClick={() => history.push({ pathname: `/managerial/editrole/${role['_id']}`, state: { role } })}
+                      onClick={() =>
+                        history.push({
+                          pathname: `/managerial/editrole/${role['_id']}`,
+                          state: { role }
+                        })
+                      }
                     />
                   }
                 />

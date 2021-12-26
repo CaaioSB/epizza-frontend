@@ -10,7 +10,14 @@ const AuthContext = createContext()
 
 const AuthProvider = props => {
   const [firstAttemptFinished, setFirstAttemptFinished] = useState(false)
-  const { data = { user: null }, error, isRejected, isPending, isSettled, reload } = useAsync({
+  const {
+    data = { user: null },
+    error,
+    isRejected,
+    isPending,
+    isSettled,
+    reload
+  } = useAsync({
     promiseFn: bootstrapAppData
   })
 

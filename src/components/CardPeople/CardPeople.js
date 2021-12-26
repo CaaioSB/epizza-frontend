@@ -37,7 +37,11 @@ export const CardPeopleComponent = ({ name, cpf, cep, email, actions, isLoading,
           ) : (
             <Text
               width='100%'
-              style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
+              style={{
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap'
+              }}
               fontWeight='500'
             >
               {name}
@@ -67,7 +71,11 @@ export const CardPeopleComponent = ({ name, cpf, cep, email, actions, isLoading,
               color='gray'
               variant='small'
               mr={10}
-              style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}
+              style={{
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap'
+              }}
             >
               <b>E-MAIL:</b> {email}
             </Text>

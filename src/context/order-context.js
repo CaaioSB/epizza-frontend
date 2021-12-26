@@ -17,7 +17,11 @@ const useOrder = () => {
 const OrderProvider = ({ children }) => {
   const [products, setProducts] = useState([])
   const [customer, setCustomer] = useState({})
-  const [order, setOrder] = useState({ paymentsMethods: {}, total: 0, shipping: { distance: '0 km', fare: 0 } })
+  const [order, setOrder] = useState({
+    paymentsMethods: {},
+    total: 0,
+    shipping: { distance: '0 km', fare: 0 }
+  })
 
   useEffect(() => {
     customerSchema.validate(customer, { abortEarly: false }).then(() => {
@@ -53,7 +57,10 @@ const OrderProvider = ({ children }) => {
 
   const appendProduct = productToAppend => {
     const hasProduct = products.some(product => product._id === productToAppend._id)
-    setOrder({ ...order, total: parseFloat((parseFloat(order.total) + parseFloat(productToAppend.price)).toFixed(2)) })
+    setOrder({
+      ...order,
+      total: parseFloat((parseFloat(order.total) + parseFloat(productToAppend.price)).toFixed(2))
+    })
 
     if (hasProduct) {
       return setProducts(
@@ -83,7 +90,11 @@ const OrderProvider = ({ children }) => {
   const cancelOrder = () => {
     setProducts([])
     setCustomer({})
-    setOrder({ paymentsMethods: {}, total: 0, shipping: { distance: '0 km', fare: 0 } })
+    setOrder({
+      paymentsMethods: {},
+      total: 0,
+      shipping: { distance: '0 km', fare: 0 }
+    })
   }
 
   const saveOrder = () => {
@@ -91,7 +102,12 @@ const OrderProvider = ({ children }) => {
       return { _id, quantity, price, total: price * quantity }
     })
 
-    const newOrder = { customerId: customer?._id, address: customer?.address, products: newProducts, ...order }
+    const newOrder = {
+      customerId: customer?._id,
+      address: customer?.address,
+      products: newProducts,
+      ...order
+    }
   }
 
   return (

@@ -24,7 +24,10 @@ const NewRole = ({ location: { state } }) => {
 
   const { register, handleSubmit, control, errors } = useForm({
     resolver: roleResolver,
-    defaultValues: { ...state?.role, actions: allActions.filter(action => state?.role.actions.includes(action.name)) }
+    defaultValues: {
+      ...state?.role,
+      actions: allActions.filter(action => state?.role.actions.includes(action.name))
+    }
   })
 
   const { fields: actions, append, remove } = useFieldArray({ control, name: 'actions' })
@@ -32,11 +35,18 @@ const NewRole = ({ location: { state } }) => {
   const onSubmit = async data => {
     try {
       if (isEdit) {
-        await putRole({ ...data, id: state.role._id, actions: data?.actions.map(action => action.name) })
+        await putRole({
+          ...data,
+          id: state.role._id,
+          actions: data?.actions.map(action => action.name)
+        })
         toast.success('As alterações foram salvas com sucesso.')
       }
 
-      await postRole({ ...data, actions: data?.actions.map(action => action.name) })
+      await postRole({
+        ...data,
+        actions: data?.actions.map(action => action.name)
+      })
       toast.success('O cargo foi criado com sucesso.')
 
       history.goBack()
@@ -60,7 +70,10 @@ const NewRole = ({ location: { state } }) => {
             error={errors?.actions?.message}
             onChange={e => {
               const { options, value } = e.target
-              append({ name: value, label: options[options.selectedIndex].label })
+              append({
+                name: value,
+                label: options[options.selectedIndex].label
+              })
             }}
           >
             <Option>Permissões (listadas abaixo)</Option>

@@ -18,7 +18,10 @@ const NewProduct = ({ location: { state } }) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const resolver = useYupValidationResolver(productSchema)
-  const { register, handleSubmit, control, errors } = useForm({ resolver, defaultValues: state?.product })
+  const { register, handleSubmit, control, errors } = useForm({
+    resolver,
+    defaultValues: state?.product
+  })
   const history = useHistory()
 
   const onSubmit = async data => {

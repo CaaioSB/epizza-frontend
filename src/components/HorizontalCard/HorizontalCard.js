@@ -25,7 +25,14 @@ export const HorizontalCardComponent = ({ name, description, action, icon, isLoa
           <Card ml={30}>
             <Row justifyContent='space-between'>
               <Column>
-                <Text style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }} fontWeight='500'>
+                <Text
+                  style={{
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap'
+                  }}
+                  fontWeight='500'
+                >
                   {name}
                 </Text>
                 <CardInformations>

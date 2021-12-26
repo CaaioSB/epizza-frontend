@@ -66,7 +66,10 @@ const NewEmployee = ({ location: { state } }) => {
 
     // Modo de edição
     try {
-      const response = await putEmployee({ id: state?.employee['_id'], ...data })
+      const response = await putEmployee({
+        id: state?.employee['_id'],
+        ...data
+      })
       toast.success(response?.data?.message)
     } catch (err) {
       toast.error('Ocorreu um erro desconhecido. Tente novamente mais tarde.')

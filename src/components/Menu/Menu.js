@@ -84,7 +84,12 @@ export const MenuComponent = ({ title, color }) => {
               </ResponsiveMenuButton>
             ))}
           </Column>
-          <Row minWidth={40} width='100%' justifyContent='space-between' style={{ contain: 'content' }}>
+          <Row
+            minWidth={40}
+            width='100%'
+            justifyContent='space-between'
+            style={{ contain: 'content', overflow: '-webkit-page-x' }}
+          >
             <IconButton
               minWidth={40}
               alignSelf='start'
@@ -136,7 +141,12 @@ export const MenuComponent = ({ title, color }) => {
               </Button>
             ))}
           </Column>
-          <Row minWidth={40} width='100%' justifyContent='space-between' style={{ contain: 'content' }}>
+          <Row
+            minWidth={40}
+            width='100%'
+            justifyContent='space-between'
+            style={{ contain: 'content', overflow: '-webkit-paged-x' }}
+          >
             <IconButton
               minWidth={40}
               alignSelf='start'

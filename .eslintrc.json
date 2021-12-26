@@ -10,12 +10,7 @@
     "jsx-quotes": ["error", "prefer-single"],
     "react/jsx-boolean-value": [0],
     "react-hooks/rules-of-hooks": "error",
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
+    "prettier/prettier": "crlf",
     "space-before-function-paren": 0
   }
 }
