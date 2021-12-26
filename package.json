@@ -43,7 +43,7 @@
     "build": "REACT_APP_NODE_ENV=production rescripts build",
     "test": "rescripts test --passWithNoTests",
     "eject": "rescripts eject",
-    "commit": "npx git-cz",
+    "commit": "git cz",
     "prettier": "prettier --write '**/*.{js,jsx,json}' --ignore-path .gitignore"
   },
   "devDependencies": {
