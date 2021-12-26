@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
 #root, body {
   height: 100vh
 }
+
 * {
   font-family: 'Poppins', sans-serif;
   border: 0;
