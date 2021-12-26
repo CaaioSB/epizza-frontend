@@ -10,7 +10,7 @@
     "jsx-quotes": ["error", "prefer-single"],
     "react/jsx-boolean-value": [0],
     "react-hooks/rules-of-hooks": "error",
-    "prettier/prettier": "crlf",
+    "prettier/prettier": 1,
     "space-before-function-paren": 0
   }
 }
