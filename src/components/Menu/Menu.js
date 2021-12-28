@@ -54,41 +54,47 @@ export const MenuComponent = ({ title, color }) => {
     <Theme>
       <ColumnDesktop>
         <SideMenu opened={openedMenu}>
-          <Column>
-            <Row minWidth={40} width='100%' style={{ contain: 'content' }}>
-              <IconButton alignSelf='start' icon='menu' color='white' onClick={() => setOpenedMenu(!openedMenu)} />
+          <Row
+            minWidth={40}
+            width='100%'
+            justifyContent='start'
+            flexDirection='column'
+            style={{ contain: 'content', overflowX: 'hidden' }}
+          >
+            <Row>
+              <IconButton
+                minWidth={40}
+                alignSelf='start'
+                icon='menu'
+                color='white'
+                onClick={() => setOpenedMenu(!openedMenu)}
+              />
               <Row>
-                <Text
-                  ml={10}
-                  variant='medium'
-                  width='60%'
-                  position='absolute'
-                  textAlign='center'
-                  alignSelf='center'
-                  style={{ whiteSpace: 'nowrap' }}
-                >
+                <Text ml={10} variant='medium' textAlign='center' alignSelf='center' style={{ whiteSpace: 'nowrap' }}>
                   {title}
                 </Text>
               </Row>
             </Row>
-            {menuItems.map((item, index) => (
-              <ResponsiveMenuButton
-                my={10}
-                key={item.route + index}
-                opened={openedMenu}
-                color='primary'
-                onClick={() => pushTo(item.route)}
-              >
-                {!openedMenu && <Icon icon={item?.icon} />}
-                {openedMenu && item.label}
-              </ResponsiveMenuButton>
-            ))}
-          </Column>
+            <Column>
+              {menuItems.map((item, index) => (
+                <ResponsiveMenuButton
+                  my={10}
+                  key={item.route + index}
+                  opened={openedMenu}
+                  color='primary'
+                  onClick={() => pushTo(item.route)}
+                >
+                  {!openedMenu && <Icon icon={item?.icon} />}
+                  {openedMenu && item.label}
+                </ResponsiveMenuButton>
+              ))}
+            </Column>
+          </Row>
           <Row
             minWidth={40}
             width='100%'
             justifyContent='space-between'
-            style={{ contain: 'content', overflow: '-webkit-page-x' }}
+            style={{ contain: 'content', overflowX: 'hidden' }}
           >
             <IconButton
               minWidth={40}
@@ -183,7 +189,7 @@ export const MenuComponent = ({ title, color }) => {
 const SideMenu = styled.div(
   ({ opened }) => `
   width: ${opened ? '300px' : '70px'};
-  padding: 0 20px;
+  padding: 0 15px;
   height: 100vh;
   display: flex;
   align-items: center;
