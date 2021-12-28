@@ -22,12 +22,15 @@ import { OrderProductComponent } from 'components/Ordering'
 import EmojiComponent from 'components/Emoji'
 import Checkbox from 'components/Checkbox'
 import Image from 'components/Image'
-import Input from 'components/Input'
+import Input, { InputCurrency } from 'components/Input'
 
 import { useOrder } from 'context/order-context'
 
 import { getProducts } from 'services/product'
 import { getPaymentsMethods } from 'services/payments-methods'
+
+import { formatMoneyFromPTBR } from 'helpers'
+import { useYupValidationResolver, orderSchema } from 'helpers/yup-schemas'
 
 const NewOrder = () => {
   const [products, setProducts] = useState([])
@@ -49,7 +52,9 @@ const NewOrder = () => {
     removeProduct,
     updateProduct
   } = useOrder()
-  const { watch, register, handleSubmit, setValue, getValue } = useForm()
+
+  const resolver = useYupValidationResolver(orderSchema)
+  const { watch, register, control, errors, handleSubmit, setValue, getValue } = useForm({ resolver })
   const history = useHistory()
 
   useEffect(() => {
@@ -74,8 +79,8 @@ const NewOrder = () => {
   }, [])
 
   useEffect(() => {
-    setChangeValue(parseFloat(watch()?.toPay - orderDetails.total).toFixed(2))
-    // setValue('change', 'Troco: R$ 1,00')
+    const formatedToPay = formatMoneyFromPTBR(String(watch()?.toPay))
+    setChangeValue((formatedToPay - orderDetails.total).toFixed(2))
 
     setMoneyPaymant(watch()?.paymentsMethods?.money)
   }, [watch()])
@@ -243,20 +248,22 @@ const NewOrder = () => {
                 {moneyPayment && (
                   <Row mt={18}>
                     <ColumnResponsive justifyContent='space-between' width='100%'>
-                      <Input
-                        width='65%'
+                      <InputCurrency
+                        width='55%'
                         register={register}
+                        control={control}
                         name='toPay'
+                        money
                         placeholder='Quantia que será paga em dinheiro'
-                        onChange={() => {
-                          setValue('change', 'Troco: R$ 1,00')
-                        }}
                       />
-                      <Input
-                        width='30%'
+                      <InputCurrency
+                        width='40%'
                         register={register}
+                        control={control}
                         name='change'
-                        value={`Troco: R$ ${changeValue}`}
+                        prefix='TROCO R$'
+                        value={isNaN(changeValue) ? -Math.abs(orderDetails?.total) : changeValue}
+                        money
                         readonly
                       />
                     </ColumnResponsive>

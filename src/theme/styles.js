@@ -12,6 +12,11 @@ export const styles = {
       error: '#F8333C',
       info: '#2B9EB3',
       warning: '#F66800'
+    },
+    gray: {
+      main: '#BBBBBB',
+      dark: '#A3A3A3',
+      light: '#DDDDDD'
     }
   },
   space: [],
