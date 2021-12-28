@@ -5,3 +5,11 @@ export const limitString = (string, limit) => {
 
   return `${string.slice(0, limit).trim()}...`
 }
+
+export const formatMoneyFromPTBR = quantity => {
+  if (typeof quantity !== 'string') {
+    throw Error('formatMoneyPTBR expect string on parameter')
+  }
+
+  return parseFloat(quantity.replace('.', '').replace(',', '.'))
+}

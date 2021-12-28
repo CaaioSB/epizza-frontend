@@ -26,6 +26,10 @@ export const Button = styled.button`
     background-color: ${props => `${props.theme.palette[props.color].dark}`};
   }
 
+  :disabled {
+    background-color: ${props => `${props.theme.palette['gray'].main}`};
+  }
+
   @media (max-width: ${MEDIADESKTOP}px) {
     width: 100%;
     margin: 10px 0;
